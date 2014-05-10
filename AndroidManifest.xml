@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.forritzstar.freeringtones"
+    android:versionCode="7"
+    android:versionName="1.6" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 友盟权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 酷果 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.forritzstar.freeringtones.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.forritzstar.freeringtones.RingList"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/ringtones_list" >
+        </activity>
+        <activity
+            android:name="com.forritzstar.freeringtones.NotificationList"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/ringtones_list" >
+        </activity>
+        <activity
+            android:name="com.forritzstar.freeringtones.AlarmList"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/ringtones_list" >
+        </activity>
+        <activity
+            android:name="com.forritzstar.freeringtones.TabRingtones"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/add_ringtones" >
+        </activity>
+        <activity
+            android:name="com.forritzstar.freeringtones.InstructionsForUse"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+
+        <service android:name="com.forritzstar.freeringtones.NotificationService" >
+        </service>
+        <service android:name="com.forritzstar.freeringtones.RingtoneService" >
+        </service>
+        <service android:name="com.forritzstar.freeringtones.AlarmService" >
+        </service>
+
+        <receiver android:name="com.forritzstar.my.AlarmReceiver" />
+        <receiver android:name="com.forritzstar.my.BootCompletedReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 需要注册的自定义receiver:banner的包名.MyBReceive -->
+        <receiver android:name="com.forritzstar.freeringtones.b.MyBReceive" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 需要注册的自定义 广告详情:banner的包名.MyBActivity -->
+        <activity
+            android:name="com.forritzstar.freeringtones.b.MyBActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 注明：com.xx.xx 是推送jar包的包名，MyActivity、MyService、MyReceiver是开发者自定义的类名。 -->
+        <activity
+            android:name="com.forritzstar.freeringtones.p.MyActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance" />
+
+        <service android:name="com.forritzstar.freeringtones.p.MyService" />
+
+        <receiver android:name="com.forritzstar.freeringtones.p.MyReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 友盟Activity -->
+        <activity android:name="com.umeng.fb.ConversationActivity" />
+        <activity android:name="com.umeng.fb.ContactActivity" />
+
+        <service
+            android:name="com.umeng.common.net.DownloadingService"
+            android:process=":DownloadingService" >
+        </service>
+
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5315cee256240b4c69066e1f" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="wandoujia" />
+    </application>
+
+</manifest>

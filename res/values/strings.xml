@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">随意铃声</string>
+    <string name="action_settings">Settings</string>
+    <string name="key_ringtone_mode">key_ringtone_mode</string>
+    <string name="title_ringtone_mode">来电铃声模式</string>
+    <string name="key_notification_mode">key_notification_mode</string>
+    <string name="title_notification_mode">短信铃声模式</string>
+    <string name="key_alarm_mode">key_alarm_mode</string>
+    <string name="title_alarm_mode">闹钟铃声模式</string>
+    <string name="key_ringtones_list">key_ringtones_list</string>
+    <string name="title_ringtones_list">来电铃声列表</string>
+    <string name="key_notification_list">key_notification_list</string>
+    <string name="title_notification_list">短信铃声列表</string>
+    <string name="key_alarm_list">key_alarm_list</string>
+    <string name="title_alarm_list">闹钟铃声列表</string>
+    <string name="key_feedback">key_feedback</string>
+    <string name="title_feedback">用户反馈</string>
+    <string name="summary_feedback">有问题或建议可以提出来</string>
+    <string name="key_comment">key_comment</string>
+    <string name="title_comment">评价</string>
+    <string name="summary_comment">只是评价</string>
+    <string name="key_share">key_share</string>
+    <string name="title_share">分享</string>
+    <string name="summary_share">觉得不错可以分享一下~~</string>
+    <string name="key_instructions_for_use">key_instructions_for_use</string>
+    <string name="title_instructions_for_use">使用说明</string>
+    <string name="summary_instructions_for_use">新手必读</string>
+    <string name="dialog_message_instructions_for_use">1.请设置开机自启动\n2.允许获取手机来电等状态。\n\n如果使用了安全软件，请放开这些权限。\n\n小米手机设置方法: 安全中心——>授权管理——>应用管理\n点击确定查看详情</string>
+    <string name="key_about">key_about</string>
+    <string name="title_about">关于</string>
+    <string name="summary_about">QQ交流群：369752149</string>
+    <string name="dialog_message_about">随意铃声，不一样的铃声</string>
+    <string name="add_ringtones">添加铃声</string>
+    <string name="ringtones_list">铃声列表</string>
+    <string name="select_all">全选</string>
+    <string name="select_fan">反选</string>
+    <string name="add">添加</string>
+    <string name="delete">删除</string>
+    <string name="title_ring_mode">铃声模式</string>
+    <string name="title_view_ringtones">查看铃声</string>
+    <string name="title_help">帮助</string>
+    <string name="key_update">"key_update"</string>
+    <string name="title_update">检查更新</string>
+
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="entries_ring_mode">
+        <item>随机铃声</item>
+        <item>循环铃声</item>
+        <item>指定铃声</item>
+    </string-array>
+    <string-array name="entry_values_ring_mode">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    
+    <string name="default_value_ring_mode">2</string>
+
+</resources>
