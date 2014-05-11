@@ -4,24 +4,18 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.forritzstar.tool.ServiceTool;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UmengUpdateListener;
-import com.umeng.update.UpdateResponse;
-import com.umeng.update.UpdateStatus;
 
 public class MainActivity extends PreferenceActivity implements
 		OnPreferenceClickListener, OnPreferenceChangeListener {
@@ -60,8 +54,6 @@ public class MainActivity extends PreferenceActivity implements
 		setSummary(R.string.key_ringtone_mode);
 		setSummary(R.string.key_notification_mode);
 		setSummary(R.string.key_alarm_mode);
-		findPreference(getString(R.string.key_update)).setSummary(
-				"当前版本: " + getVersionName());
 	}
 
 	private void setSummary(int resId) {
@@ -81,35 +73,8 @@ public class MainActivity extends PreferenceActivity implements
 	}
 
 	private void umeng() {
-		update();
+		UmengUpdateAgent.update(this);
 		feedbackAgent();
-	}
-
-	private void update() {
-		UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
-			@Override
-			public void onUpdateReturned(int updateStatus,
-					UpdateResponse updateInfo) {
-				switch (updateStatus) {
-				case UpdateStatus.Yes: // has update
-					// UmengUpdateAgent.showUpdateDialog(MainActivity.this,
-					// updateInfo);
-					break;
-				case UpdateStatus.No: // has no update
-					Toast.makeText(MainActivity.this, "应用程序为最新版本",
-							Toast.LENGTH_SHORT).show();
-					break;
-				case UpdateStatus.NoneWifi: // none wifi
-					Toast.makeText(MainActivity.this, "没有wifi连接， 只在wifi下更新",
-							Toast.LENGTH_SHORT).show();
-					break;
-				case UpdateStatus.Timeout: // time out
-					Toast.makeText(MainActivity.this, "超时,请检查网络连接",
-							Toast.LENGTH_SHORT).show();
-					break;
-				}
-			}
-		});
 	}
 
 	/**
@@ -135,7 +100,6 @@ public class MainActivity extends PreferenceActivity implements
 
 		setClickListener(R.string.key_instructions_for_use);
 		setClickListener(R.string.key_feedback);
-		setClickListener(R.string.key_update);
 		setClickListener(R.string.key_about);
 		setClickListener(R.string.key_share);
 	}
@@ -196,8 +160,7 @@ public class MainActivity extends PreferenceActivity implements
 					+ "随意铃声，不一样的铃声！\n下载地址: http://app.xiaomi.com/detail/56912");
 			intent.putExtra(Intent.EXTRA_TITLE, "随意铃声");
 			startActivity(Intent.createChooser(intent, "请选择"));
-		} else if (preference.getKey().equals(getString(R.string.key_update)))
-			UmengUpdateAgent.forceUpdate(this);
+		}
 		return true;
 	}
 
@@ -233,25 +196,6 @@ public class MainActivity extends PreferenceActivity implements
 		Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
 		findPreference(preference.getKey()).setSummary(ringMode(newValue + ""));
 		return true;
-	}
-
-	/**
-	 * 返回当前程序版本名
-	 */
-	public String getVersionName() {
-		String versionName = "";
-		try {
-			// ---get the package info---
-			PackageManager pm = getPackageManager();
-			PackageInfo pi = pm.getPackageInfo(getPackageName(), 0);
-			versionName = pi.versionName;
-			if (versionName == null || versionName.length() <= 0) {
-				return "";
-			}
-		} catch (Exception e) {
-			Log.e("VersionInfo", "Exception", e);
-		}
-		return versionName;
 	}
 
 }

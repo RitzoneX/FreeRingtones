@@ -8,7 +8,7 @@
     <string name="key_notification_mode">key_notification_mode</string>
     <string name="title_notification_mode">短信铃声模式</string>
     <string name="key_alarm_mode">key_alarm_mode</string>
-    <string name="title_alarm_mode">闹钟铃声模式</string>
+    <string name="title_alarm_mode">闹钟铃声模式 (每天更换一次铃声)</string>
     <string name="key_ringtones_list">key_ringtones_list</string>
     <string name="title_ringtones_list">来电铃声列表</string>
     <string name="key_notification_list">key_notification_list</string>
@@ -41,7 +41,5 @@
     <string name="title_ring_mode">铃声模式</string>
     <string name="title_view_ringtones">查看铃声</string>
     <string name="title_help">帮助</string>
-    <string name="key_update">"key_update"</string>
-    <string name="title_update">检查更新</string>
 
 </resources>

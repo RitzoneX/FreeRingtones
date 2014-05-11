@@ -84,10 +84,6 @@
             android:title="@string/title_share" >
         </PreferenceScreen>
         <PreferenceScreen
-            android:key="@string/key_update"
-            android:title="@string/title_update" >
-        </PreferenceScreen>
-        <PreferenceScreen
             android:key="@string/key_about"
             android:summary="@string/summary_about"
             android:title="@string/title_about" >

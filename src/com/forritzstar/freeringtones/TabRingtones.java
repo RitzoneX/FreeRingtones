@@ -3,14 +3,6 @@ package com.forritzstar.freeringtones;
 import java.util.Arrays;
 import java.util.List;
 
-import com.forritzstar.dao.DBHelper;
-import com.forritzstar.dao.RingtoneDAO;
-import com.forritzstar.freeringtones.AddRingtonesFragment.AlarmFragment;
-import com.forritzstar.freeringtones.AddRingtonesFragment.NotificationFragment;
-import com.forritzstar.freeringtones.AddRingtonesFragment.RingtoneFragment;
-import com.forritzstar.freeringtones.AddRingtonesFragment.SDFragment;
-import com.umeng.analytics.MobclickAgent;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -19,10 +11,18 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 
+import com.forritzstar.dao.DBHelper;
+import com.forritzstar.freeringtones.AddRingtonesFragment.AlarmFragment;
+import com.forritzstar.freeringtones.AddRingtonesFragment.NotificationFragment;
+import com.forritzstar.freeringtones.AddRingtonesFragment.RingtoneFragment;
+import com.forritzstar.freeringtones.AddRingtonesFragment.SDFragment;
+import com.umeng.analytics.MobclickAgent;
+
 public class TabRingtones extends FragmentActivity {
 	private ViewPager pager;
 	private String tableName;
-	private RingtoneDAO dao;
+
+	// private RingtoneDAO dao;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class TabRingtones extends FragmentActivity {
 		pager.setAdapter(new MyAdapter(getSupportFragmentManager()));
 
 		String tableName = getIntent().getStringExtra("table_name");
-		dao = new RingtoneDAO(this, tableName);
+		// dao = new RingtoneDAO(this, tableName);
 	}
 
 	public String getTableName() {
@@ -60,7 +60,7 @@ public class TabRingtones extends FragmentActivity {
 
 	@Override
 	protected void onDestroy() {
-		dao.closeDB();
+		// dao.closeDB();
 		super.onDestroy();
 	}
 
