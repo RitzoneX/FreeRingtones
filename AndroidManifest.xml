@@ -39,17 +39,17 @@
         <activity
             android:name="com.forritzstar.freeringtones.RingList"
             android:configChanges="orientation|screenSize"
-            android:label="@string/ringtones_list" >
+            android:label="@string/ring_list" >
         </activity>
         <activity
             android:name="com.forritzstar.freeringtones.NotificationList"
             android:configChanges="orientation|screenSize"
-            android:label="@string/ringtones_list" >
+            android:label="@string/notification_list" >
         </activity>
         <activity
             android:name="com.forritzstar.freeringtones.AlarmList"
             android:configChanges="orientation|screenSize"
-            android:label="@string/ringtones_list" >
+            android:label="@string/alarm_list" >
         </activity>
         <activity
             android:name="com.forritzstar.freeringtones.TabRingtones"

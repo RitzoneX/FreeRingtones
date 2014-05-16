@@ -5,16 +5,21 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.forritzstar.dao.Ringtone;
 import com.forritzstar.dao.RingtoneDAO;
 import com.forritzstar.my.MyPlayer;
+import com.forritzstar.my.Share;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -41,17 +46,22 @@ public abstract class RingtonesList extends ListActivity {
 	private void init() {
 		player = new MyPlayer(this);
 		player.setAudioStreamType(getStreamType());
-		dao = RingtoneDAO.create(this, getTableName());
+		dao = new RingtoneDAO(this, getTableName());
 		adapter = new RingtonesAdapter(this, dao.getAll());
+		Share.DEFAULT_RINGTONE = RingtoneManager.getActualDefaultRingtoneUri(
+				this, getType()).toString();
 
 		setVolumeControlStream(getStreamType());
 		kuguo();
 		setListeners();
+		Toast.makeText(this, "长按列表可以设置默认铃声", Toast.LENGTH_SHORT).show();
 	}
 
 	protected abstract String getTableName();
 
 	protected abstract int getStreamType();
+
+	protected abstract int getType();
 
 	/**
 	 * 酷果
@@ -82,6 +92,25 @@ public abstract class RingtonesList extends ListActivity {
 		OnClickListener listener = new MyListener(adapter);
 		findViewById(R.id.btn_select_all).setOnClickListener(listener);
 		findViewById(R.id.btn_select_fan).setOnClickListener(listener);
+
+		// 长按列表事件
+		getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Ringtone ringtone = dao.find((int) id);
+				Share.DEFAULT_RINGTONE = ringtone.getUri();
+				Uri uri = Uri.parse(Share.DEFAULT_RINGTONE);
+				RingtoneManager.setActualDefaultRingtoneUri(RingtonesList.this,
+						getType(), uri);
+
+				adapter.notifyDataSetChanged();
+				String toast = "已设置\"" + ringtone.getTitle() + "\"为默认铃声";
+				Toast.makeText(RingtonesList.this, toast, Toast.LENGTH_SHORT)
+						.show();
+				return true;
+			}
+		});
 	}
 
 	@Override

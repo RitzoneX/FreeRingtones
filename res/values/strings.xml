@@ -11,10 +11,13 @@
     <string name="title_alarm_mode">闹钟铃声模式 (每天更换一次铃声)</string>
     <string name="key_ringtones_list">key_ringtones_list</string>
     <string name="title_ringtones_list">来电铃声列表</string>
+    <string name="summary_ringtones_list">选择来电铃声</string>
     <string name="key_notification_list">key_notification_list</string>
     <string name="title_notification_list">短信铃声列表</string>
+    <string name="summary_notification_list">选择短信铃声</string>
     <string name="key_alarm_list">key_alarm_list</string>
     <string name="title_alarm_list">闹钟铃声列表</string>
+    <string name="summary_alarm_list">选择闹钟铃声</string>
     <string name="key_feedback">key_feedback</string>
     <string name="title_feedback">用户反馈</string>
     <string name="summary_feedback">有问题或建议可以提出来</string>
@@ -33,7 +36,9 @@
     <string name="summary_about">QQ交流群：369752149</string>
     <string name="dialog_message_about">随意铃声，不一样的铃声</string>
     <string name="add_ringtones">添加铃声</string>
-    <string name="ringtones_list">铃声列表</string>
+    <string name="ring_list">来电铃声列表</string>
+    <string name="notification_list">短信铃声列表</string>
+    <string name="alarm_list">闹钟铃声列表</string>
     <string name="select_all">全选</string>
     <string name="select_fan">反选</string>
     <string name="add">添加</string>

@@ -33,7 +33,7 @@ public abstract class AddRingtonesFragment extends ListFragment {
 
 	private void init() {
 		player = new MyPlayer(getActivity());
-		dao = RingtoneDAO.getDao();
+		dao = ((TabRingtones) getActivity()).dao;
 		adapter = new AddRingtonesAdapter(this, getCursor());
 
 		setStreamType(player);
@@ -169,7 +169,7 @@ public abstract class AddRingtonesFragment extends ListFragment {
 			public boolean isEnabled() {
 				int id = ringtone.getId();
 				if (isEnabled.indexOfKey(id) < 0)
-					isEnabled.put(id, !RingtoneDAO.getDao().contains(ringtone));
+					isEnabled.put(id, !dao.contains(ringtone));
 				return isEnabled.get(id);
 			}
 

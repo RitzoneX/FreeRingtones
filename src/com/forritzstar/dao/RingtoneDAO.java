@@ -11,8 +11,6 @@ public class RingtoneDAO {
 	private SQLiteDatabase db;
 	private String tableName;
 
-	private static RingtoneDAO dao;
-
 	/**
 	 * 
 	 * @param context
@@ -23,21 +21,6 @@ public class RingtoneDAO {
 		this.tableName = tableName;
 		helper = new DBHelper(context);
 		db = helper.getWritableDatabase();
-	}
-
-	/**
-	 * 工厂
-	 * 
-	 * @param context
-	 * @param tableName
-	 * @return
-	 */
-	public static RingtoneDAO create(Context context, String tableName) {
-		return dao = new RingtoneDAO(context, tableName);
-	}
-
-	public static RingtoneDAO getDao() {
-		return dao;
 	}
 
 	/**
@@ -69,7 +52,7 @@ public class RingtoneDAO {
 			ids[i] = ringtones.get(i).getId();
 		delete(ids);
 	}
-	
+
 	/**
 	 * 使用不同的方法删除记录1到多条记录
 	 * 
