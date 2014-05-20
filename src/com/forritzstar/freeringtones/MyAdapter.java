@@ -15,6 +15,7 @@ import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import com.forritzstar.dao.Ringtone;
+import com.forritzstar.my.Share;
 
 /**
  * 自定义Adapter
@@ -72,6 +73,12 @@ public abstract class MyAdapter extends CursorAdapter {
 		listStatus.refreshRingtone();
 		setEnabled(holder.chk);
 		holder.chk.setChecked(listStatus.isChecked());
+		
+		// 设置背景
+		if (listStatus.getUri().equals(Share.DEFAULT_RINGTONE))
+			view.setBackgroundResource(R.drawable.default_ringtone);
+		else
+			view.setBackgroundDrawable(null);
 
 		// 必须注册OnClickListener
 		holder.chk.setOnClickListener(new OnClickListener() {

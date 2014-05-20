@@ -20,22 +20,11 @@
             android:entryValues="@array/entry_values_ring_mode"
             android:key="@string/key_alarm_mode"
             android:title="@string/title_alarm_mode" />
-        <!--
-             <CheckBoxPreference
-            android:key="@string/key_free_ringtones_switch"
-            android:title="@string/title_free_ringtones_switch" />
-        <CheckBoxPreference
-            android:key="@string/key_notification_switch"
-            android:title="@string/title_notification_switch" />
-        <CheckBoxPreference
-            android:key="@string/key_alarm_switch"
-            android:summary="@string/summary_alarm_switch"
-            android:title="@string/title_alarm_switch" />
-        -->
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_view_ringtones" >
         <PreferenceScreen
             android:key="@string/key_ringtones_list"
+            android:summary="@string/summary_ringtones_list"
             android:title="@string/title_ringtones_list" >
             <intent
                 android:targetClass="com.forritzstar.freeringtones.RingList"
@@ -44,6 +33,7 @@
         </PreferenceScreen>
         <PreferenceScreen
             android:key="@string/key_notification_list"
+            android:summary="@string/summary_notification_list"
             android:title="@string/title_notification_list" >
             <intent
                 android:targetClass="com.forritzstar.freeringtones.NotificationList"
@@ -52,6 +42,7 @@
         </PreferenceScreen>
         <PreferenceScreen
             android:key="@string/key_alarm_list"
+            android:summary="@string/summary_alarm_list"
             android:title="@string/title_alarm_list" >
             <intent
                 android:targetClass="com.forritzstar.freeringtones.AlarmList"

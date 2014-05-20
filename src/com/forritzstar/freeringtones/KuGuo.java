@@ -11,13 +11,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.forritzstar.freeringtones.b.BannerView;
+import com.forritzstar.freeringtones.ban.BannerView;
 import com.forritzstar.freeringtones.p.MyManager;
 
 public class KuGuo {
 	private static final String XIAOMI = "xiaomi";
 	private static final String UMENG = "umeng";
 	private static final String ANZHI = "k-goapk";
+	private static final String DAOYOUDAO = "daoyoudao";
 
 	private static final String COO_ID = "52e3580ea21b471586b167206a411342";
 	private static final String CHANNEL_ID = ANZHI;
@@ -72,7 +73,7 @@ public class KuGuo {
 			return fragment.getListView();
 	}
 
-	void push() {
+	public void push() {
 		if (new Random().nextBoolean()) {
 			pm = MyManager.getInstance(context);
 			// 设置cooId

@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.forritzstar.dao.Ringtone;
 import com.forritzstar.dao.RingtoneDAO;
@@ -33,7 +34,7 @@ public abstract class AddRingtonesFragment extends ListFragment {
 
 	private void init() {
 		player = new MyPlayer(getActivity());
-		dao = RingtoneDAO.getDao();
+		dao = ((TabRingtones) getActivity()).dao;
 		adapter = new AddRingtonesAdapter(this, getCursor());
 
 		setStreamType(player);
@@ -78,6 +79,7 @@ public abstract class AddRingtonesFragment extends ListFragment {
 						dao.add(adapter.getRingtones());
 						getActivity().setResult(Activity.RESULT_OK);
 						getActivity().finish();
+						Toast.makeText(getActivity(), "添加成功", Toast.LENGTH_SHORT).show();
 					}
 				});
 
@@ -169,7 +171,7 @@ public abstract class AddRingtonesFragment extends ListFragment {
 			public boolean isEnabled() {
 				int id = ringtone.getId();
 				if (isEnabled.indexOfKey(id) < 0)
-					isEnabled.put(id, !RingtoneDAO.getDao().contains(ringtone));
+					isEnabled.put(id, !dao.contains(ringtone));
 				return isEnabled.get(id);
 			}
 
