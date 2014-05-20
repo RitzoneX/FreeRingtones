@@ -10,7 +10,6 @@ import android.os.IBinder;
 
 public class RingtoneService extends Service {
 	private BroadcastReceiver receiver = new RingtoneReceiver();
-	private KuGuo kuGuo;
 
 	@Override
 	public void onCreate() {
@@ -18,20 +17,12 @@ public class RingtoneService extends Service {
 
 		registerReceiver(receiver, new IntentFilter(
 				"android.intent.action.PHONE_STATE"));
-
-		kuguo();
 	}
 
 	@Override
 	public void onDestroy() {
-		kuGuo.stopMessage();
 		unregisterReceiver(receiver);
 		super.onDestroy();
-	}
-
-	private void kuguo() {
-		kuGuo = new KuGuo(this);
-		kuGuo.push();
 	}
 
 	@Override

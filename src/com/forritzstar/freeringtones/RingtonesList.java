@@ -86,6 +86,7 @@ public abstract class RingtonesList extends ListActivity {
 			@Override
 			public void onClick(View v) {
 				adapter.delete();
+				Toast.makeText(RingtonesList.this, "删除成功", Toast.LENGTH_SHORT).show();
 			}
 		});
 

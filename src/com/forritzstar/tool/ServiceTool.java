@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.forritzstar.freeringtones.AlarmService;
-import com.forritzstar.freeringtones.MainActivity;
 import com.forritzstar.freeringtones.NotificationService;
 import com.forritzstar.freeringtones.R;
 import com.forritzstar.freeringtones.RingtoneService;
+import com.forritzstar.my.Share;
 
 public class ServiceTool {
 	/**
@@ -19,13 +19,13 @@ public class ServiceTool {
 		DefaultSharedPreferences sharedPreferences = new DefaultSharedPreferences(
 				context);
 		if (!sharedPreferences.getString(R.string.key_ringtone_mode).equals(
-				MainActivity.MODE_DEFAULT))
+				Share.MODE_DEFAULT))
 			context.startService(new Intent(context, RingtoneService.class));
 		if (!sharedPreferences.getString(R.string.key_notification_mode)
-				.equals(MainActivity.MODE_DEFAULT))
+				.equals(Share.MODE_DEFAULT))
 			context.startService(new Intent(context, NotificationService.class));
 		if (!sharedPreferences.getString(R.string.key_alarm_mode).equals(
-				MainActivity.MODE_DEFAULT))
+				Share.MODE_DEFAULT))
 			context.startService(new Intent(context, AlarmService.class));
 	}
 }

@@ -7,8 +7,8 @@ import android.net.Uri;
 
 import com.forritzstar.dao.DBHelper;
 import com.forritzstar.dao.RingtoneDAO;
-import com.forritzstar.freeringtones.MainActivity;
 import com.forritzstar.freeringtones.R;
+import com.forritzstar.my.Share;
 
 public class RingUri {
 
@@ -37,9 +37,8 @@ public class RingUri {
 	}
 
 	private int getPosition() {
-		String mode = new DefaultSharedPreferences(context)
-				.getString(getKey());
-		if (mode.equals(MainActivity.MODE_RANDOM))
+		String mode = new DefaultSharedPreferences(context).getString(getKey());
+		if (mode.equals(Share.MODE_RANDOM))
 			return random();
 		else
 			return loop();

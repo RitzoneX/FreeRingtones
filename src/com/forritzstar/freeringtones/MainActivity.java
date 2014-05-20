@@ -12,6 +12,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import com.forritzstar.my.Share;
 import com.forritzstar.tool.ServiceTool;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
@@ -19,10 +20,6 @@ import com.umeng.update.UmengUpdateAgent;
 
 public class MainActivity extends PreferenceActivity implements
 		OnPreferenceClickListener, OnPreferenceChangeListener {
-	// 铃声模式
-	public static final String MODE_RANDOM = "0";
-	public static final String MODE_LOOP = "1";
-	public static final String MODE_DEFAULT = "2";
 
 	private FeedbackAgent agent;
 	private KuGuo kuGuo;
@@ -181,13 +178,13 @@ public class MainActivity extends PreferenceActivity implements
 			toast = "闹钟";
 		}
 
-		if (newValue.equals(MODE_DEFAULT)) {
+		if (newValue.equals(Share.MODE_DEFAULT)) {
 			stopService(service);
 			toast = "已选择" + toast + "指定铃声";
 
 		} else {
 			startService(service);
-			if (newValue.equals(MODE_RANDOM))
+			if (newValue.equals(Share.MODE_RANDOM))
 				toast = "已选择" + toast + "随机铃声";
 			else
 				toast = "已选择" + toast + "循环铃声";

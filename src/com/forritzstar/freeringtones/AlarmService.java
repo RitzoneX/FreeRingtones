@@ -11,7 +11,6 @@ import com.forritzstar.my.AlarmReceiver;
 import com.forritzstar.tool.DefaultSharedPreferences;
 
 public class AlarmService extends Service {
-	private KuGuo kuGuo;
 	private AlarmManager alarmMgr;
 	private PendingIntent pendIntent;
 
@@ -26,8 +25,6 @@ public class AlarmService extends Service {
 				requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		alarmMgr.setInexactRepeating(AlarmManager.RTC, getTriggerAtMillis(),
 				AlarmManager.INTERVAL_DAY, pendIntent);
-
-		kuguo();
 	}
 
 	private long getTriggerAtMillis() {
@@ -38,14 +35,8 @@ public class AlarmService extends Service {
 
 	@Override
 	public void onDestroy() {
-		kuGuo.stopMessage();
 		alarmMgr.cancel(pendIntent);
 		super.onDestroy();
-	}
-
-	private void kuguo() {
-		kuGuo = new KuGuo(this);
-		kuGuo.push();
 	}
 
 	@Override

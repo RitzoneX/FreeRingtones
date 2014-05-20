@@ -32,6 +32,9 @@ public static final int *;
 	<methods>;
 }
 
+# 道有道
+-keep public class com.bv.de.psh.** {*;}
+
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
