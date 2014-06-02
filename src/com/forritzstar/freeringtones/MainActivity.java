@@ -154,6 +154,7 @@ public class MainActivity extends PreferenceActivity implements
 			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
 			intent.putExtra(Intent.EXTRA_TEXT, "每天都听着同一首铃声，还在为选择铃声而烦恼吗？\n"
 					+ "不用怕，随意铃声帮你一次搞定，让你每天都欣赏到不同的铃声。\n"
+					+ "可以随机循环设置来电、短信、闹钟铃声。\n"
 					+ "随意铃声，不一样的铃声！\n下载地址: http://app.xiaomi.com/detail/56912");
 			intent.putExtra(Intent.EXTRA_TITLE, "随意铃声");
 			startActivity(Intent.createChooser(intent, "请选择"));

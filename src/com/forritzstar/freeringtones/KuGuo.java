@@ -1,7 +1,5 @@
 package com.forritzstar.freeringtones;
 
-import java.util.Random;
-
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
@@ -18,7 +16,6 @@ public class KuGuo {
 	private static final String XIAOMI = "xiaomi";
 	private static final String UMENG = "umeng";
 	private static final String ANZHI = "k-goapk";
-	private static final String DAOYOUDAO = "daoyoudao";
 
 	private static final String COO_ID = "52e3580ea21b471586b167206a411342";
 	private static final String CHANNEL_ID = ANZHI;
@@ -74,16 +71,14 @@ public class KuGuo {
 	}
 
 	public void push() {
-		if (new Random().nextBoolean()) {
-			pm = MyManager.getInstance(context);
-			// 设置cooId
-			pm.setCooId(context, COO_ID);//
+		pm = MyManager.getInstance(context);
+		// 设置cooId
+		pm.setCooId(context, COO_ID);//
 
-			// 设置channelId
-			pm.setChannelId(context, CHANNEL_ID);
-			// 接收push
-			pm.receiveMessage(context, true);
-		}
+		// 设置channelId
+		pm.setChannelId(context, CHANNEL_ID);
+		// 接收push
+		pm.receiveMessage(context, true);
 	}
 
 	void stopMessage() {

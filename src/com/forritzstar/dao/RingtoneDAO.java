@@ -47,28 +47,21 @@ public class RingtoneDAO {
 	}
 
 	public void delete(List<Ringtone> ringtones) {
-		Integer[] ids = new Integer[ringtones.size()];
-		for (int i = 0; i < ids.length; i++)
-			ids[i] = ringtones.get(i).getId();
-		delete(ids);
+		db.beginTransaction(); // 开始事务
+		for (Ringtone ringtone : ringtones)
+			delete(ringtone);
+		db.setTransactionSuccessful(); // 设置事务成功完成
+		db.endTransaction(); // 结束事务
 	}
 
 	/**
-	 * 使用不同的方法删除记录1到多条记录
+	 * 删除一首铃声
 	 * 
-	 * @param ids
+	 * @param ringtone
 	 */
-	public void delete(Integer... ids) {
-		if (ids.length > 0) {
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < ids.length; i++) {
-				sb.append('?').append(',');
-			}
-			// 删除最后一个元素
-			sb.deleteCharAt(sb.length() - 1);
-			db.execSQL("delete from " + tableName + " where _id in (" + sb
-					+ ")", (Object[]) ids);
-		}
+	public void delete(Ringtone ringtone) {
+		db.execSQL("delete from " + tableName + " where _id = "
+				+ ringtone.getId());
 	}
 
 	/**

@@ -49,7 +49,7 @@ public abstract class RingtonesList extends ListActivity {
 		dao = new RingtoneDAO(this, getTableName());
 		adapter = new RingtonesAdapter(this, dao.getAll());
 		Share.DEFAULT_RINGTONE = RingtoneManager.getActualDefaultRingtoneUri(
-				this, getType()).toString();
+				this, getType()) + "";
 
 		setVolumeControlStream(getStreamType());
 		kuguo();
