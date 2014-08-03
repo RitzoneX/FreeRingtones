@@ -1,14 +1,13 @@
-package com.forritzstar.freeringtones;
+package com.forritzstar.my;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
-
-import com.forritzstar.my.AlarmReceiver;
-import com.forritzstar.tool.DefaultSharedPreferences;
+import android.preference.PreferenceManager;
 
 public class AlarmService extends Service {
 	private AlarmManager alarmMgr;
@@ -28,7 +27,9 @@ public class AlarmService extends Service {
 	}
 
 	private long getTriggerAtMillis() {
-		long alarm = new DefaultSharedPreferences(this).getLong("alarm");
+		SharedPreferences preferences = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		long alarm = preferences.getLong("alarm", 0);
 		return alarm > System.currentTimeMillis() ? alarm : System
 				.currentTimeMillis();
 	}

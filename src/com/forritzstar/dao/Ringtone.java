@@ -3,7 +3,7 @@ package com.forritzstar.dao;
 public class Ringtone {
 	private int id;
 	private String title;
-	private String uri;
+	private String data;
 
 	public Ringtone() {
 		super();
@@ -13,7 +13,7 @@ public class Ringtone {
 		super();
 		this.id = id;
 		this.title = title;
-		this.uri = uri;
+		this.data = uri;
 	}
 
 	public int getId() {
@@ -32,12 +32,12 @@ public class Ringtone {
 		this.title = title;
 	}
 
-	public String getUri() {
-		return uri;
+	public String getData() {
+		return data;
 	}
 
-	public void setUri(String uri) {
-		this.uri = uri;
+	public void setData(String data) {
+		this.data = data;
 	}
 
 	@Override

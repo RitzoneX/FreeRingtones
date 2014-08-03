@@ -1,4 +1,4 @@
-package com.forritzstar.freeringtones;
+package com.forritzstar.my;
 
 import android.app.Service;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.IBinder;
 
 import com.forritzstar.dao.DBHelper;
-import com.forritzstar.tool.RingUri;
 
 public class NotificationService extends Service {
 	@Override
@@ -36,7 +35,7 @@ public class NotificationService extends Service {
 	private ContentObserver observer = new ContentObserver(null) {
 		@Override
 		public void onChange(boolean selfChange) {
-			Uri uri = new RingUri(NotificationService.this,
+			Uri uri = new Ring(NotificationService.this,
 					DBHelper.NOTIFICATIONS).next();
 			if (uri != null)
 				RingtoneManager.setActualDefaultRingtoneUri(

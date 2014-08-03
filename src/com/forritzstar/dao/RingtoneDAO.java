@@ -29,8 +29,10 @@ public class RingtoneDAO {
 	 * @param ringtone
 	 */
 	public void add(Ringtone ringtone) {
-		db.execSQL("insert into " + tableName + " (title, uri) values(?,?)",
-				new Object[] { ringtone.getTitle(), ringtone.getUri() });
+		db.execSQL(
+				"insert into " + tableName + " (_id, title, _data) values(?,?,?)",
+				new Object[] { ringtone.getId(), ringtone.getTitle(),
+						ringtone.getData() });
 	}
 
 	/**
@@ -64,39 +66,39 @@ public class RingtoneDAO {
 				+ ringtone.getId());
 	}
 
-	/**
-	 * 根据id查找
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Ringtone find(int id) {
-		Cursor cursor = db.rawQuery("select * from " + tableName
-				+ " where _id = ?", new String[] { id + "" });
-		Ringtone ringtone = null;
-		if (cursor.moveToNext()) {
-			ringtone = new Ringtone(
-					cursor.getInt(cursor.getColumnIndex("_id")),
-					cursor.getString(cursor.getColumnIndex("title")),
-					cursor.getString(cursor.getColumnIndex("uri")));
-		}
-		cursor.close();
-		return ringtone;
-	}
+//	/**
+//	 * 根据id查找
+//	 * 
+//	 * @param id
+//	 * @return
+//	 */
+//	public Ringtone find(int id) {
+//		Cursor cursor = db.rawQuery("select * from " + tableName
+//				+ " where _id = ?", new String[] { id + "" });
+//		Ringtone ringtone = null;
+//		if (cursor.moveToNext()) {
+//			ringtone = new Ringtone(
+//					cursor.getInt(cursor.getColumnIndex("_id")),
+//					cursor.getString(cursor.getColumnIndex("title")),
+//					cursor.getString(cursor.getColumnIndex("uri")));
+//		}
+//		cursor.close();
+//		return ringtone;
+//	}
 
-	/**
-	 * 查询有没包含ringtone
-	 * 
-	 * @param ringtone
-	 * @return
-	 */
-	public boolean contains(Ringtone ringtone) {
-		Cursor cursor = db.rawQuery("select * from " + tableName
-				+ " where uri = ?", new String[] { ringtone.getUri() });
-		boolean b = cursor.getCount() != 0;
-		cursor.close();
-		return b;
-	}
+//	/**
+//	 * 查询有没包含ringtone
+//	 * 
+//	 * @param ringtone
+//	 * @return
+//	 */
+//	public boolean contains(Ringtone ringtone) {
+//		Cursor cursor = db.rawQuery("select * from " + tableName
+//				+ " where uri = ?", new String[] { ringtone.getData() });
+//		boolean b = cursor.getCount() != 0;
+//		cursor.close();
+//		return b;
+//	}
 
 	/**
 	 * 查找所有的记录
@@ -104,7 +106,8 @@ public class RingtoneDAO {
 	 * @return
 	 */
 	public Cursor getAll() {
-		return db.rawQuery("select * from " + tableName, null);
+		return db.rawQuery("select * from " + tableName + " ORDER BY ?",
+				new String[] { "_order" });
 	}
 
 	/**
@@ -112,5 +115,6 @@ public class RingtoneDAO {
 	 */
 	public void closeDB() {
 		db.close();
+		helper.close();
 	}
 }

@@ -1,6 +1,4 @@
-package com.forritzstar.freeringtones;
-
-import com.forritzstar.my.RingtoneReceiver;
+package com.forritzstar.my;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;

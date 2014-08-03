@@ -12,26 +12,6 @@
 
 # Add any project specific keep options here:
 
-# 友盟
--keepclassmembers class * {
-   public <init>(org.json.JSONObject);
-}
-
--keep public class com.forritzstar.freeringtones.R$*{
-public static final int *;
-}
-
--keep public class com.umeng.fb.ui.ThreadView {
-}
-
-# 酷果
--keep public class com.forritzstar.freeringtones.b.inter.** {*;}
-
--keep class com.forritzstar.freeringtones.p.* {
-	<fields>;
-	<methods>;
-}
-
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:

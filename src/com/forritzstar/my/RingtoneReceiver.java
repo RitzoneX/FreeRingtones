@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.telephony.TelephonyManager;
 
 import com.forritzstar.dao.DBHelper;
-import com.forritzstar.tool.RingUri;
 
 public class RingtoneReceiver extends BroadcastReceiver {
 	private Context context;
@@ -28,7 +27,7 @@ public class RingtoneReceiver extends BroadcastReceiver {
 		case TelephonyManager.CALL_STATE_OFFHOOK: // 接听
 			break;
 		case TelephonyManager.CALL_STATE_IDLE: // 挂断
-			Uri uri = new RingUri(context, DBHelper.RINGTONES).next();
+			Uri uri = new Ring(context, DBHelper.RINGTONES).next();
 			if (uri != null)
 				RingtoneManager.setActualDefaultRingtoneUri(context,
 						RingtoneManager.TYPE_RINGTONE, uri);

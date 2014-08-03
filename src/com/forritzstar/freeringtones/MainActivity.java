@@ -1,199 +1,267 @@
 package com.forritzstar.freeringtones;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
+import android.preference.PreferenceFragment;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
+import com.forritzstar.my.AlarmService;
+import com.forritzstar.my.KuGuo;
+import com.forritzstar.my.NotificationService;
+import com.forritzstar.my.RingtoneService;
+import com.forritzstar.my.ServiceCtrl;
 import com.forritzstar.my.Share;
-import com.forritzstar.tool.ServiceTool;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;
 
-public class MainActivity extends PreferenceActivity implements
-		OnPreferenceClickListener, OnPreferenceChangeListener {
+public class MainActivity extends Activity {
+	public static String PREF_KEY_RINGTONE_MODE = "pref_key_ringtone_mode";
+	public static String PREF_KEY_NOTIFICATION_MODE = "pref_key_notification_mode";
+	public static String PREF_KEY_ALARM_MODE = "pref_key_alarm_mode";
+	public static String PREF_KEY_RINGTONE = "pref_key_ringtone";
+	public static String PREF_KEY_NOTIFICATION = "pref_key_notification";
+	public static String PREF_KEY_ALARM = "pref_key_alarm";
 
+	private DialogFragment dialog = new AboutFragment();
 	private FeedbackAgent agent;
-	private KuGuo kuGuo;
-
-	private String[] entriesRingMode;
-	private SharedPreferences prefs;
+	private BannerView bannerView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.preferences);
-
-		init();
-		ServiceTool.ifStartService(this);
+		// Display the fragment as the main content.
+		// getFragmentManager().beginTransaction()
+		// .replace(android.R.id.content, new SettingsFragment()).commit();
+		setContentView(R.layout.activity_main);
+		ServiceCtrl.startServices(this);
 		umeng();
 		kuguo();
 	}
 
-	private void init() {
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		entriesRingMode = getResources().getStringArray(
-				R.array.entries_ring_mode);
-
-		initSummary();
-		setListeners();
-	}
-
-	private void initSummary() {
-		setSummary(R.string.key_ringtone_mode);
-		setSummary(R.string.key_notification_mode);
-		setSummary(R.string.key_alarm_mode);
-	}
-
-	private void setSummary(int resId) {
-		setSummary(getString(resId));
-	}
-
-	private void setSummary(String key) {
-		findPreference(key).setSummary(getSummary(key));
-	}
-
-	private CharSequence getSummary(String key) {
-		return ringMode(prefs.getString(key, ""));
-	}
-
-	private CharSequence ringMode(String index) {
-		return entriesRingMode[Integer.parseInt(index)];
+	private void kuguo() {
+		bannerView =  (BannerView) findViewById(R.id.banner);
+		bannerView.showBanner(KuGuo.COO_ID, KuGuo.CHANNEL_ID);
 	}
 
 	private void umeng() {
 		UmengUpdateAgent.update(this);
-		feedbackAgent();
-	}
-
-	/**
-	 * 友盟反馈
-	 */
-	private void feedbackAgent() {
 		agent = new FeedbackAgent(this);
 		agent.sync();
 	}
 
-	/**
-	 * 酷果
-	 */
-	private void kuguo() {
-		kuGuo = new KuGuo(this);
-		kuGuo.showFooterBanner();
-	}
-
-	private void setListeners() {
-		setChangeListener(R.string.key_ringtone_mode);
-		setChangeListener(R.string.key_notification_mode);
-		setChangeListener(R.string.key_alarm_mode);
-
-		setClickListener(R.string.key_instructions_for_use);
-		setClickListener(R.string.key_feedback);
-		setClickListener(R.string.key_about);
-		setClickListener(R.string.key_share);
-	}
-
-	private void setClickListener(int resId) {
-		findPreference(getString(resId)).setOnPreferenceClickListener(this);
-	}
-
-	private void setChangeListener(int resId) {
-		findPreference(getString(resId)).setOnPreferenceChangeListener(this);
-	}
-
 	@Override
-	protected void onResume() {
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+
+		// Set up ShareActionProvider's default share intent
+		MenuItem shareItem = menu.findItem(R.id.action_share);
+		ShareActionProvider mShareActionProvider = (ShareActionProvider) shareItem
+				.getActionProvider();
+		mShareActionProvider.setShareIntent(getDefaultIntent());
+
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	/**
+	 * 评价
+	 * 
+	 * @param item
+	 */
+	public void onComment(MenuItem item) {
+		Intent intent = new Intent("android.intent.action.VIEW");
+		Uri data = Uri
+				.parse("market://details?id=com.forritzstar.freeringtones");
+		intent.setData(data);
+		startActivity(intent);
+	}
+
+	/**
+	 * 关于
+	 * 
+	 * @param item
+	 */
+	public void onAbout(MenuItem item) {
+		dialog.show(getFragmentManager(), "AboutFragment");
+	}
+
+	/**
+	 * 帮助
+	 * 
+	 * @param item
+	 */
+	public void onHelp(MenuItem item) {
+		Intent intent = new Intent(this, HelpActivity.class);
+		startActivity(intent);
+	}
+
+	public void onFAQ(MenuItem item) {
+		Intent intent = new Intent(this, FAQActivity.class);
+		startActivity(intent);
+	}
+
+	public void onFeedback(MenuItem item) {
+
+		agent.startFeedbackActivity();
+	}
+
+	/**
+	 * Defines a default (dummy) share intent to initialize the action provider.
+	 * However, as soon as the actual content to be used in the intent is known
+	 * or changes, you must update the share intent by again calling
+	 * mShareActionProvider.setShareIntent()
+	 */
+	private Intent getDefaultIntent() {
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+		intent.putExtra(Intent.EXTRA_TEXT, "每天都听着同一首铃声，还在为选择铃声而烦恼吗？\n"
+				+ "不用怕，随意铃声帮你一次搞定，让你每天都欣赏到不同的铃声。\n" + "可以随机循环设置来电、短信、闹钟铃声。\n"
+				+ "随意铃声，不一样的铃声！\n下载地址: http://app.xiaomi.com/detail/56912");
+		intent.putExtra(Intent.EXTRA_TITLE, "随意铃声");
+		return intent;
+	}
+
+	public void onResume() {
 		super.onResume();
 		MobclickAgent.onResume(this);
 	}
 
-	@Override
-	protected void onPause() {
+	public void onPause() {
 		super.onPause();
 		MobclickAgent.onPause(this);
 	}
 
 	@Override
 	protected void onDestroy() {
-		kuGuo.finishBanner();
 		super.onDestroy();
+		if (bannerView != null) {
+			bannerView.finishBanner();
+		}
 	}
 
-	@Override
-	public boolean onPreferenceClick(Preference preference) {
-		if (preference.getKey().equals(getString(R.string.key_feedback)))
-			agent.startFeedbackActivity();
-		else if (preference.getKey().equals(
-				getString(R.string.key_instructions_for_use)))
-			new AlertDialog.Builder(this)
-					.setTitle(R.string.title_instructions_for_use)
-					.setMessage(R.string.dialog_message_instructions_for_use)
-					.setPositiveButton(android.R.string.ok,
+	public static class SettingsFragment extends PreferenceFragment implements
+			OnPreferenceClickListener, OnSharedPreferenceChangeListener {
+		private String[] entriesRingMode;
+
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+
+			entriesRingMode = getResources().getStringArray(
+					R.array.entries_ring_mode);
+			// Load the preferences from an XML resource
+			addPreferencesFromResource(R.xml.preferences);
+
+			findPreference(PREF_KEY_RINGTONE)
+					.setOnPreferenceClickListener(this);
+			findPreference(PREF_KEY_NOTIFICATION).setOnPreferenceClickListener(
+					this);
+			findPreference(PREF_KEY_ALARM).setOnPreferenceClickListener(this);
+		}
+
+		@Override
+		public boolean onPreferenceClick(Preference preference) {
+			if (preference.getKey().equals(PREF_KEY_RINGTONE))
+				updateSummary(getPreferenceScreen().getSharedPreferences(),
+						PREF_KEY_RINGTONE_MODE);
+			else if (preference.getKey().equals(PREF_KEY_NOTIFICATION))
+				updateSummary(getPreferenceScreen().getSharedPreferences(),
+						PREF_KEY_NOTIFICATION_MODE);
+			else if (preference.getKey().equals(PREF_KEY_ALARM))
+				updateSummary(getPreferenceScreen().getSharedPreferences(),
+						PREF_KEY_ALARM_MODE);
+			return true;
+		}
+
+		@Override
+		public void onSharedPreferenceChanged(
+				SharedPreferences sharedPreferences, String key) {
+			if (key.equals(PREF_KEY_RINGTONE_MODE)
+					|| key.equals(PREF_KEY_NOTIFICATION_MODE)
+					|| key.equals(PREF_KEY_ALARM_MODE)) {
+				String value = sharedPreferences.getString(key, "");
+				Intent service = new Intent(getActivity(), getService(key));
+				if (value.equals(Share.MODE_DEFAULT)) {
+					getActivity().stopService(service);
+
+				} else {
+					getActivity().startService(service);
+				}
+				int i = updateSummary(sharedPreferences, key);
+				Toast.makeText(getActivity(),
+						"已切换至" + entriesRingMode[i] + "模式", Toast.LENGTH_SHORT)
+						.show();
+			}
+		}
+
+		private Class<?> getService(String key) {
+			if (key.equals(PREF_KEY_RINGTONE_MODE))
+				return RingtoneService.class;
+			if (key.equals(PREF_KEY_NOTIFICATION_MODE))
+				return NotificationService.class;
+			if (key.equals(PREF_KEY_ALARM_MODE))
+				return AlarmService.class;
+			return null;
+		}
+
+		// 更新Summary
+		private int updateSummary(SharedPreferences sharedPreferences,
+				String key) {
+			Preference connectionPref = findPreference(key);
+			int i = Integer.parseInt(sharedPreferences.getString(key, ""));
+			// Set summary to be the user-description for the selected value
+			connectionPref.setSummary(entriesRingMode[i]);
+			return i;
+		}
+
+		@Override
+		public void onResume() {
+			super.onResume();
+			getPreferenceScreen().getSharedPreferences()
+					.registerOnSharedPreferenceChangeListener(this);
+		}
+
+		@Override
+		public void onPause() {
+			super.onPause();
+			getPreferenceScreen().getSharedPreferences()
+					.unregisterOnSharedPreferenceChangeListener(this);
+		}
+
+	}
+
+	public static class AboutFragment extends DialogFragment {
+
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			// Use the Builder class for convenient dialog construction
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			builder.setTitle(R.string.about)
+					.setMessage(R.string.dialog_about_message)
+					.setPositiveButton(R.string.ok,
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									startActivity(new Intent(MainActivity.this,
-											InstructionsForUse.class));
 								}
-							}).show();
-		else if (preference.getKey().equals(getString(R.string.key_about)))
-			new AlertDialog.Builder(this).setTitle(R.string.title_about)
-					.setMessage(R.string.dialog_message_about)
-					.setPositiveButton(android.R.string.ok, null).show();
-		else if (preference.getKey().equals(getString(R.string.key_share))) {
-			Intent intent = new Intent(Intent.ACTION_SEND);
-			intent.setType("text/plain");
-			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
-			intent.putExtra(Intent.EXTRA_TEXT, "每天都听着同一首铃声，还在为选择铃声而烦恼吗？\n"
-					+ "不用怕，随意铃声帮你一次搞定，让你每天都欣赏到不同的铃声。\n"
-					+ "可以随机循环设置来电、短信、闹钟铃声。\n"
-					+ "随意铃声，不一样的铃声！\n下载地址: http://app.xiaomi.com/detail/56912");
-			intent.putExtra(Intent.EXTRA_TITLE, "随意铃声");
-			startActivity(Intent.createChooser(intent, "请选择"));
+							});
+			// Create the AlertDialog object and return it
+			return builder.create();
 		}
-		return true;
+
 	}
-
-	@Override
-	public boolean onPreferenceChange(Preference preference, Object newValue) {
-		String toast = "";
-		Intent service = null;
-		if (preference.getKey().equals(getString(R.string.key_ringtone_mode))) {
-			service = new Intent(this, RingtoneService.class);
-			toast = "来电";
-		} else if (preference.getKey().equals(
-				getString(R.string.key_notification_mode))) {
-			service = new Intent(this, NotificationService.class);
-			toast = "短信";
-		} else if (preference.getKey().equals(
-				getString(R.string.key_alarm_mode))) {
-			service = new Intent(this, AlarmService.class);
-			toast = "闹钟";
-		}
-
-		if (newValue.equals(Share.MODE_DEFAULT)) {
-			stopService(service);
-			toast = "已选择" + toast + "指定铃声";
-
-		} else {
-			startService(service);
-			if (newValue.equals(Share.MODE_RANDOM))
-				toast = "已选择" + toast + "随机铃声";
-			else
-				toast = "已选择" + toast + "循环铃声";
-		}
-
-		Toast.makeText(this, toast, Toast.LENGTH_SHORT).show();
-		findPreference(preference.getKey()).setSummary(ringMode(newValue + ""));
-		return true;
-	}
-
 }

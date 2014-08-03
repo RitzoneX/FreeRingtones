@@ -10,7 +10,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String ALARMS = "alarms";
 
 	private static final String NAME = "data.db";
-	private static final int VERSION = 3;
+	private static final int VERSION = 4;
 
 	public DBHelper(Context context) {
 		super(context, NAME, null, VERSION);
@@ -23,10 +23,11 @@ public class DBHelper extends SQLiteOpenHelper {
 		createTable(db, ALARMS);
 	}
 
+	// 创建表
 	private void createTable(SQLiteDatabase db, String table) {
 		db.execSQL("CREATE TABLE IF NOT EXISTS "
 				+ table
-				+ "(_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, uri TEXT)");
+				+ "(_order INTEGER PRIMARY KEY, _id INTEGER, title TEXT, _data TEXT)");
 	}
 
 	@Override
@@ -36,8 +37,19 @@ public class DBHelper extends SQLiteOpenHelper {
 			createTable(db, NOTIFICATIONS);
 		case 2:
 			createTable(db, ALARMS);
+		case 3:
+			dropTable(db, RINGTONES);
+			dropTable(db, NOTIFICATIONS);
+			dropTable(db, ALARMS);
+			createTable(db, RINGTONES);
+			createTable(db, NOTIFICATIONS);
+			createTable(db, ALARMS);
 		default:
 			break;
 		}
+	}
+	
+	private void dropTable(SQLiteDatabase db, String table) {
+		db.execSQL("DROP TABLE IF EXISTS " + table);
 	}
 }

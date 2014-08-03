@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 
 import com.forritzstar.dao.DBHelper;
-import com.forritzstar.tool.RingUri;
 
 //首先创建Receiver
 public class AlarmReceiver extends BroadcastReceiver {
@@ -30,7 +29,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 	}
 
 	private void changeRingtone(Context context) {
-		Uri uri = new RingUri(context, DBHelper.ALARMS).next();
+		Uri uri = new Ring(context, DBHelper.ALARMS).next();
 		if (uri != null)
 			RingtoneManager.setActualDefaultRingtoneUri(context,
 					RingtoneManager.TYPE_ALARM, uri);

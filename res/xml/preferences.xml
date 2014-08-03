@@ -1,83 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory android:title="@string/title_ring_mode" >
-        <ListPreference
-            android:defaultValue="@string/default_value_ring_mode"
-            android:entries="@array/entries_ring_mode"
-            android:entryValues="@array/entry_values_ring_mode"
-            android:key="@string/key_ringtone_mode"
-            android:title="@string/title_ringtone_mode" />
-        <ListPreference
-            android:defaultValue="@string/default_value_ring_mode"
-            android:entries="@array/entries_ring_mode"
-            android:entryValues="@array/entry_values_ring_mode"
-            android:key="@string/key_notification_mode"
-            android:title="@string/title_notification_mode" />
-        <ListPreference
-            android:defaultValue="@string/default_value_ring_mode"
-            android:entries="@array/entries_ring_mode"
-            android:entryValues="@array/entry_values_ring_mode"
-            android:key="@string/key_alarm_mode"
-            android:title="@string/title_alarm_mode" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_view_ringtones" >
+    <PreferenceCategory android:title="@string/pref_title_settings" >
         <PreferenceScreen
-            android:key="@string/key_ringtones_list"
-            android:summary="@string/summary_ringtones_list"
-            android:title="@string/title_ringtones_list" >
-            <intent
-                android:targetClass="com.forritzstar.freeringtones.RingList"
-                android:targetPackage="com.forritzstar.freeringtones" >
-            </intent>
+            android:key="pref_key_ringtone"
+            android:summary="@string/pref_summary_ringtone"
+            android:title="@string/pref_title_ringtone" >
+            <ListPreference
+                android:defaultValue="@string/default_value_ring_mode"
+                android:entries="@array/entries_ring_mode"
+                android:entryValues="@array/entry_values_ring_mode"
+                android:key="pref_key_ringtone_mode"
+                android:title="@string/pref_title_ring_mode" />
+
+            <PreferenceScreen
+                android:summary="@string/pref_summary_ring_list"
+                android:title="@string/pref_title_ring_list" >
+                <intent
+                    android:targetClass="com.forritzstar.freeringtones.RingList$RingtoneList"
+                    android:targetPackage="com.forritzstar.freeringtones" >
+                </intent>
+            </PreferenceScreen>
         </PreferenceScreen>
         <PreferenceScreen
-            android:key="@string/key_notification_list"
-            android:summary="@string/summary_notification_list"
-            android:title="@string/title_notification_list" >
-            <intent
-                android:targetClass="com.forritzstar.freeringtones.NotificationList"
-                android:targetPackage="com.forritzstar.freeringtones" >
-            </intent>
+            android:key="pref_key_notification"
+            android:summary="@string/pref_summary_notification"
+            android:title="@string/pref_title_notification" >
+            <ListPreference
+                android:defaultValue="@string/default_value_ring_mode"
+                android:entries="@array/entries_ring_mode"
+                android:entryValues="@array/entry_values_ring_mode"
+                android:key="pref_key_notification_mode"
+                android:title="@string/pref_title_ring_mode" />
+
+            <PreferenceScreen
+                android:summary="@string/pref_summary_ring_list"
+                android:title="@string/pref_title_ring_list" >
+                <intent
+                    android:targetClass="com.forritzstar.freeringtones.RingList$NotificationList"
+                    android:targetPackage="com.forritzstar.freeringtones" >
+                </intent>
+            </PreferenceScreen>
         </PreferenceScreen>
         <PreferenceScreen
-            android:key="@string/key_alarm_list"
-            android:summary="@string/summary_alarm_list"
-            android:title="@string/title_alarm_list" >
-            <intent
-                android:targetClass="com.forritzstar.freeringtones.AlarmList"
-                android:targetPackage="com.forritzstar.freeringtones" >
-            </intent>
-        </PreferenceScreen>
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/title_help" >
-        <PreferenceScreen
-            android:key="@string/key_instructions_for_use"
-            android:summary="@string/summary_instructions_for_use"
-            android:title="@string/title_instructions_for_use" >
-        </PreferenceScreen>
-        <PreferenceScreen
-            android:key="@string/key_feedback"
-            android:summary="@string/summary_feedback"
-            android:title="@string/title_feedback" >
-        </PreferenceScreen>
-        <PreferenceScreen
-            android:key="@string/key_comment"
-            android:summary="@string/summary_comment"
-            android:title="@string/title_comment" >
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="market://details?id=com.forritzstar.freeringtones" />
-        </PreferenceScreen>
-        <PreferenceScreen
-            android:key="@string/key_share"
-            android:summary="@string/summary_share"
-            android:title="@string/title_share" >
-        </PreferenceScreen>
-        <PreferenceScreen
-            android:key="@string/key_about"
-            android:summary="@string/summary_about"
-            android:title="@string/title_about" >
+            android:key="pref_key_alarm"
+            android:summary="@string/pref_summary_alarm"
+            android:title="@string/pref_title_alarm" >
+            <ListPreference
+                android:defaultValue="@string/default_value_ring_mode"
+                android:entries="@array/entries_ring_mode"
+                android:entryValues="@array/entry_values_ring_mode"
+                android:key="pref_key_alarm_mode"
+                android:title="@string/pref_title_ring_mode" />
+
+            <PreferenceScreen
+                android:summary="@string/pref_summary_ring_list"
+                android:title="@string/pref_title_ring_list" >
+                <intent
+                    android:targetClass="com.forritzstar.freeringtones.RingList$AlarmList"
+                    android:targetPackage="com.forritzstar.freeringtones" >
+                </intent>
+            </PreferenceScreen>
         </PreferenceScreen>
     </PreferenceCategory>
 
