@@ -129,7 +129,9 @@ public abstract class AudioListFragment extends MyListFragment {
 		Cursor getCursor() {
 			return getActivity().getContentResolver().query(
 					MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection,
-					null, null, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
+					MediaStore.Audio.Media.DURATION + "!= ?",
+					new String[] { "0" },
+					MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
 		}
 
 	}

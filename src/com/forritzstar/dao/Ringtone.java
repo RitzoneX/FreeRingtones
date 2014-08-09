@@ -1,19 +1,24 @@
 package com.forritzstar.dao;
 
+import android.content.ContentUris;
+import android.net.Uri;
+import android.provider.MediaStore;
+
 public class Ringtone {
 	private int id;
 	private String title;
 	private String data;
+	private Uri uri;
 
 	public Ringtone() {
 		super();
 	}
 
-	public Ringtone(int id, String title, String uri) {
+	public Ringtone(int id, String title, String data) {
 		super();
 		this.id = id;
 		this.title = title;
-		this.data = uri;
+		this.data = data;
 	}
 
 	public int getId() {
@@ -38,6 +43,13 @@ public class Ringtone {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	public Uri getUri() {
+		if (uri == null)
+			uri = ContentUris.withAppendedId(
+					MediaStore.Audio.Media.getContentUriForPath(data), id);
+		return uri;
 	}
 
 	@Override

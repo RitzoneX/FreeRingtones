@@ -21,6 +21,14 @@
                     android:targetPackage="com.forritzstar.freeringtones" >
                 </intent>
             </PreferenceScreen>
+            <PreferenceScreen
+                android:summary="@string/pref_summary_ring_log"
+                android:title="@string/pref_title_ring_log" >
+                <intent
+                    android:targetClass="com.forritzstar.freeringtones.LogActivity$RingtoneLogActivity"
+                    android:targetPackage="com.forritzstar.freeringtones" >
+                </intent>
+            </PreferenceScreen>
         </PreferenceScreen>
         <PreferenceScreen
             android:key="pref_key_notification"
@@ -41,6 +49,14 @@
                     android:targetPackage="com.forritzstar.freeringtones" >
                 </intent>
             </PreferenceScreen>
+            <PreferenceScreen
+                android:summary="@string/pref_summary_ring_log"
+                android:title="@string/pref_title_ring_log" >
+                <intent
+                    android:targetClass="com.forritzstar.freeringtones.LogActivity$NotificationLogActivity"
+                    android:targetPackage="com.forritzstar.freeringtones" >
+                </intent>
+            </PreferenceScreen>
         </PreferenceScreen>
         <PreferenceScreen
             android:key="pref_key_alarm"
@@ -58,6 +74,14 @@
                 android:title="@string/pref_title_ring_list" >
                 <intent
                     android:targetClass="com.forritzstar.freeringtones.RingList$AlarmList"
+                    android:targetPackage="com.forritzstar.freeringtones" >
+                </intent>
+            </PreferenceScreen>
+            <PreferenceScreen
+                android:summary="@string/pref_summary_ring_log"
+                android:title="@string/pref_title_ring_log" >
+                <intent
+                    android:targetClass="com.forritzstar.freeringtones.LogActivity$AlarmLogActivity"
                     android:targetPackage="com.forritzstar.freeringtones" >
                 </intent>
             </PreferenceScreen>

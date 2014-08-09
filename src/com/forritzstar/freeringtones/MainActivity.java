@@ -1,5 +1,7 @@
 package com.forritzstar.freeringtones;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -24,6 +26,7 @@ import com.forritzstar.my.NotificationService;
 import com.forritzstar.my.RingtoneService;
 import com.forritzstar.my.ServiceCtrl;
 import com.forritzstar.my.Share;
+import com.forritzstar.tool.File;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;

@@ -7,12 +7,18 @@ import android.database.Cursor;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 
 import com.forritzstar.dao.DBHelper;
+import com.forritzstar.dao.Ringtone;
 import com.forritzstar.dao.RingtoneDAO;
 import com.forritzstar.freeringtones.MainActivity;
 
+/**
+ * 切换铃声
+ * 
+ * @author Administrator
+ * 
+ */
 public class Ring {
 	private String tableName;
 	private RingtoneDAO dao;
@@ -28,18 +34,22 @@ public class Ring {
 		cursor = dao.getAll();
 	}
 
-	public Uri next() {
+	/**
+	 * 返回下一首铃声
+	 * 
+	 * @return
+	 */
+	public Ringtone next() {
 		if (cursor.getCount() == 0)
 			return null;
 		cursor.moveToPosition(getPosition());
 		int id = cursor.getInt(cursor.getColumnIndex("_id"));
 		String path = cursor.getString(cursor.getColumnIndex("_data"));
-		Uri uri = MediaStore.Audio.Media.getContentUriForPath(path); 
-		uri = ContentUris.withAppendedId(uri, id);
+		String title = cursor.getString(cursor.getColumnIndex("title"));
 
 		cursor.close();
 		dao.closeDB();
-		return uri;
+		return new Ringtone(id, title, path);
 	}
 
 	private int getPosition() {
@@ -53,8 +63,11 @@ public class Ring {
 	private int loop() {
 		Uri uri = RingtoneManager.getActualDefaultRingtoneUri(context,
 				getType());
-		long id = ContentUris.parseId(uri);
-		return (getRow(id) + 1) % cursor.getCount();
+		if (uri != null && uri.getScheme().equals("content")) {
+			long id = ContentUris.parseId(uri);
+			return (getRow(id) + 1) % cursor.getCount();
+		} else
+			return 0;
 	}
 
 	private int getRow(long id) {

@@ -3,13 +3,12 @@ package com.forritzstar.my;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.telephony.TelephonyManager;
 
-import com.forritzstar.dao.DBHelper;
+import com.forritzstar.tool.Setting;
 
 public class RingtoneReceiver extends BroadcastReceiver {
+
 	private Context context;
 
 	@Override
@@ -27,12 +26,8 @@ public class RingtoneReceiver extends BroadcastReceiver {
 		case TelephonyManager.CALL_STATE_OFFHOOK: // 接听
 			break;
 		case TelephonyManager.CALL_STATE_IDLE: // 挂断
-			Uri uri = new Ring(context, DBHelper.RINGTONES).next();
-			if (uri != null)
-				RingtoneManager.setActualDefaultRingtoneUri(context,
-						RingtoneManager.TYPE_RINGTONE, uri);
+			Setting.changeRingtone(context);
 			break;
 		}
 	}
-
 }

@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.IBinder;
 
 import com.forritzstar.dao.DBHelper;
+import com.forritzstar.dao.Ringtone;
+import com.forritzstar.tool.Setting;
 
 public class NotificationService extends Service {
 	@Override
@@ -35,12 +37,7 @@ public class NotificationService extends Service {
 	private ContentObserver observer = new ContentObserver(null) {
 		@Override
 		public void onChange(boolean selfChange) {
-			Uri uri = new Ring(NotificationService.this,
-					DBHelper.NOTIFICATIONS).next();
-			if (uri != null)
-				RingtoneManager.setActualDefaultRingtoneUri(
-						NotificationService.this,
-						RingtoneManager.TYPE_NOTIFICATION, uri);
+			Setting.changeNotification(NotificationService.this);
 		}
 	};
 
