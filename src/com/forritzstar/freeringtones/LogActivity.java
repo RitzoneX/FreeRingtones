@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.forritzstar.tool.File;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 铃声日志
@@ -35,14 +36,14 @@ public abstract class LogActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.log, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	public void clearLog(MenuItem item) {
 		try {
 			File.clear(this, getFileName());
@@ -55,6 +56,16 @@ public abstract class LogActivity extends Activity {
 	}
 
 	abstract String getFileName();
+
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+
+	public void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
+	}
 
 	public static class RingtoneLogActivity extends LogActivity {
 

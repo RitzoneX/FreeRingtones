@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import android.content.Context;
 import android.media.RingtoneManager;
+import android.widget.Toast;
 
 import com.forritzstar.dao.DBHelper;
 import com.forritzstar.dao.Ringtone;
@@ -43,7 +44,7 @@ public class Setting {
 	private static void changeRing(Context context, String tableName, int type,
 			String fileName) {
 		Ringtone ringtone = new Ring(context, tableName).next();
-		if (ringtone.getUri() != null) {
+		if (ringtone != null) {
 			RingtoneManager.setActualDefaultRingtoneUri(context, type,
 					ringtone.getUri());
 

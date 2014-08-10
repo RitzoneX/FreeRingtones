@@ -127,7 +127,7 @@
 
         <!-- Kuguo -->
         <!-- 需要注册的自定义receiver:banner的包名.MyBReceive -->
-        <receiver android:name="com.forritzstar.freeringtones.MyBReceive" >
+        <receiver android:name="com.forritzstar.freeringtones.MBR" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <data android:scheme="package" />
@@ -139,7 +139,7 @@
 
         <!-- 需要注册的自定义 广告详情:banner的包名.MyBActivity -->
         <activity
-            android:name="com.forritzstar.freeringtones.MyBActivity"
+            android:name="com.forritzstar.freeringtones.MBA"
             android:configChanges="orientation|keyboardHidden"
             android:excludeFromRecents="true"
             android:label=""
@@ -152,7 +152,7 @@
         </meta-data>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="anzhi" />
+            android:value="hiapk" />
     </application>
 
 </manifest>
