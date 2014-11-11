@@ -12,6 +12,6 @@
         <item>2</item>
     </string-array>
     
-    <string name="default_value_ring_mode">2</string>
+    <string name="default_value_ring_mode">0</string>
 
 </resources>
