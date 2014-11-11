@@ -10,20 +10,16 @@ import android.widget.ListAdapter;
 
 import com.forritzstar.dao.DBHelper;
 import com.forritzstar.dao.RingtoneDAO;
-import com.forritzstar.my.KuGuo;
 
 public abstract class RingListFragment extends MyListFragment {
 
 	private RingListAdapter adapter;
-	private BannerView bannerView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.ringlist_fragment, container,
 				false);
-		bannerView = (BannerView) view.findViewById(R.id.banner);
-		bannerView.showBanner(KuGuo.COO_ID, KuGuo.CHANNEL_ID);
 		return view;
 	}
 
@@ -32,14 +28,6 @@ public abstract class RingListFragment extends MyListFragment {
 		RingtoneDAO dao = new RingtoneDAO(getActivity(), getTableName());
 		adapter = new RingListAdapter(getActivity(), dao.getAll(), dao);
 		return adapter;
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		if (bannerView != null) {
-			bannerView.finishBanner();
-		}
 	}
 
 	public void requery() {
@@ -62,17 +50,6 @@ public abstract class RingListFragment extends MyListFragment {
 		@Override
 		boolean getEnabled(Integer id) {
 			return true;
-		}
-
-		@Override
-		void closeAD() {
-			bannerView.stopBanner();
-			bannerView.setVisibility(View.GONE);
-		}
-
-		@Override
-		void showAD() {
-			bannerView.showBanner(KuGuo.COO_ID, KuGuo.CHANNEL_ID);
 		}
 
 	}

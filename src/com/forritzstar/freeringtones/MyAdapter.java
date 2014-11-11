@@ -71,7 +71,6 @@ public abstract class MyAdapter extends CursorAdapter {
 					// Start the CAB using the ActionMode.Callback defined above
 					mActionMode = ((Activity) context)
 							.startActionMode(mActionModeCallback);
-					closeAD();
 				}
 
 				setChecked(ringtone, ((CheckBox) v).isChecked());
@@ -82,8 +81,6 @@ public abstract class MyAdapter extends CursorAdapter {
 
 		});
 	}
-
-	abstract void closeAD();
 
 	// 设置Checked方法
 	private void setChecked(Ringtone ringtone, boolean checked) {
@@ -195,7 +192,6 @@ public abstract class MyAdapter extends CursorAdapter {
 		@Override
 		public void onDestroyActionMode(ActionMode mode) {
 			mActionMode = null;
-			showAD();
 			isChecked.clear();
 			ringtones.clear();
 			notifyDataSetChanged();
@@ -210,7 +206,5 @@ public abstract class MyAdapter extends CursorAdapter {
 			Toast.makeText(activity, "删除成功", Toast.LENGTH_SHORT).show();
 		}
 	};
-
-	abstract void showAD();
 
 }

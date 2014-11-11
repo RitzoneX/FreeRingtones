@@ -12,10 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
 import com.forritzstar.dao.RingtoneDAO;
-import com.forritzstar.my.KuGuo;
 
 public abstract class AudioListFragment extends MyListFragment {
-	private BannerView bannerView;
 	// 查询列表名
 	protected String[] projection = new String[] { MediaStore.Audio.Media._ID,
 			MediaStore.Audio.Media.TITLE, MediaStore.Audio.Media.DATA };
@@ -36,17 +34,7 @@ public abstract class AudioListFragment extends MyListFragment {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.list_fragment_audio, container,
 				false);
-		bannerView = (BannerView) view.findViewById(R.id.banner);
-		bannerView.showBanner(KuGuo.COO_ID, KuGuo.CHANNEL_ID);
 		return view;
-	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		if (bannerView != null) {
-			bannerView.finishBanner();
-		}
 	}
 
 	private class AudioListAdapter extends MyAdapter {
@@ -69,17 +57,6 @@ public abstract class AudioListFragment extends MyListFragment {
 		@Override
 		boolean getEnabled(Integer id) {
 			return !ids.contains(id);
-		}
-
-		@Override
-		void closeAD() {
-			bannerView.stopBanner();
-			bannerView.setVisibility(View.GONE);
-		}
-
-		@Override
-		void showAD() {
-			bannerView.showBanner(KuGuo.COO_ID, KuGuo.CHANNEL_ID);
 		}
 
 	}

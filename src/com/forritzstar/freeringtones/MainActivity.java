@@ -19,7 +19,6 @@ import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import com.forritzstar.my.AlarmService;
-import com.forritzstar.my.KuGuo;
 import com.forritzstar.my.NotificationService;
 import com.forritzstar.my.RingtoneService;
 import com.forritzstar.my.ServiceCtrl;
@@ -38,7 +37,6 @@ public class MainActivity extends Activity {
 
 	private DialogFragment dialog = new AboutFragment();
 	private FeedbackAgent agent;
-	private BannerView bannerView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +47,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		ServiceCtrl.startServices(this);
 		umeng();
-		kuguo();
-	}
-
-	private void kuguo() {
-		bannerView =  (BannerView) findViewById(R.id.banner);
-		bannerView.showBanner(KuGuo.COO_ID, KuGuo.CHANNEL_ID);
 	}
 
 	private void umeng() {
@@ -144,14 +136,6 @@ public class MainActivity extends Activity {
 	public void onPause() {
 		super.onPause();
 		MobclickAgent.onPause(this);
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		if (bannerView != null) {
-			bannerView.finishBanner();
-		}
 	}
 
 	public static class SettingsFragment extends PreferenceFragment implements

@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.forritzstar.freeringtones.BannerView
-        android:id="@+id/banner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <ListView
         android:id="@id/android:list"
         android:layout_width="wrap_content"
