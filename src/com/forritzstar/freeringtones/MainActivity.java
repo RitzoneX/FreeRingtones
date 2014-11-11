@@ -1,10 +1,6 @@
 package com.forritzstar.freeringtones;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -35,7 +31,6 @@ public class MainActivity extends Activity {
 	public static String PREF_KEY_NOTIFICATION = "pref_key_notification";
 	public static String PREF_KEY_ALARM = "pref_key_alarm";
 
-	private DialogFragment dialog = new AboutFragment();
 	private FeedbackAgent agent;
 
 	@Override
@@ -88,7 +83,7 @@ public class MainActivity extends Activity {
 	 * @param item
 	 */
 	public void onAbout(MenuItem item) {
-		dialog.show(getFragmentManager(), "AboutFragment");
+		startActivity(new Intent(this, AboutActivity.class));
 	}
 
 	/**
@@ -229,23 +224,4 @@ public class MainActivity extends Activity {
 
 	}
 
-	public static class AboutFragment extends DialogFragment {
-
-		@Override
-		public Dialog onCreateDialog(Bundle savedInstanceState) {
-			// Use the Builder class for convenient dialog construction
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-			builder.setTitle(R.string.about)
-					.setMessage(R.string.dialog_about_message)
-					.setPositiveButton(R.string.ok,
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-								}
-							});
-			// Create the AlertDialog object and return it
-			return builder.create();
-		}
-
-	}
 }

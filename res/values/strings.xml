@@ -29,10 +29,13 @@
     <string name="help">帮助</string>
     <string name="about">关于</string>
     <string name="ringlist_empty">点击添加按钮添加铃声</string>
-    <string name="dialog_about_message">随意铃声，是一款可以让你来电、收到短信时切换铃声的app\n如有疑问，请使用反馈\n\nQQ交流群: 369752149</string>
     <string name="ok">确定</string>
     <string name="faq">FAQ</string>
     <string name="feedback">反馈</string>
+    <string name="author">作者：RitzoneX</string>
+    <string name="contact">联系：ritzonex@gmail.com</string>
+    <string name="qq">Q群：369752149</string>
+    <string name="source">源码：https://github.com/RitzoneX/FreeRingtones</string>
     <string name="text_help_btn">小米手机设置权限方法: 安全中心——>授权管理——>应用管理\n点击查看详情</string>
     <string name="text_help">1 运行条件：设置开机启动，添加读取来电状态的权限。如果用了安全软件，请添加到信任名单或者白名单。\n\n2 铃声列表：可以添加删除铃声，每个列表都不一样。\n\n3 铃声模式：有3种不同的铃声模式，分别是随机、循环、指定模式。\n\n\n欢迎来补充，请使用反馈来联系，Thanks!</string>
     <string name="text_faq">1 问：为什么铃声不随机循环？\n答：首先要选择随机或循环模式，并且对应的铃声列表要有铃声；然后就是运行条件，有开机启动、获取来电状态等权限，添加到信任名单或者白名单都可以。\n\n2 问：为什么有时来电铃声不随机？\n答：看看电话联系人有没有设置了专属铃声，要设置为默认铃声。\n\n3 问：为什么短信闹钟铃声不随机循环？\n答：请确保短信闹钟铃声为默认通知铃声。</string>

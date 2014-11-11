@@ -89,6 +89,10 @@
             android:name="com.forritzstar.freeringtones.LogActivity$AlarmLogActivity"
             android:label="@string/alarm_log" >
         </activity>
+        <activity
+            android:name="com.forritzstar.freeringtones.AboutActivity"
+            android:label="@string/about" >
+        </activity>
 
         <service android:name="com.forritzstar.my.RingtoneService" >
         </service>
