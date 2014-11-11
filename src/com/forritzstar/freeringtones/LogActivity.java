@@ -27,8 +27,6 @@ public abstract class LogActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_log);
 		tvLog = (TextView) findViewById(R.id.tv_log);
-		// 设置滚动
-		tvLog.setMovementMethod(ScrollingMovementMethod.getInstance());
 		try {
 			tvLog.setText(File.read(this, getFileName()));
 		} catch (IOException e) {
