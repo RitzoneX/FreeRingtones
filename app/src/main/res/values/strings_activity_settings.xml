@@ -1,0 +1,31 @@
+<resources>
+    <string name="title_activity_settings">设置</string>
+
+    <!-- Strings related to Settings -->
+    <string-array name="entries_ring_mode">
+        <item>随机铃声</item>
+        <item>循环铃声</item>
+        <item>指定铃声</item>
+    </string-array>
+    <string-array name="entry_values_ring_mode">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="default_value_ring_mode">0</string>
+    <string name="pref_title_ring_mode">铃声模式</string>
+
+    <!-- Ringtone settings -->
+    <string name="pref_header_ringtone">来电</string>
+
+
+    <!-- settings for Alarm -->
+    <string name="pref_header_alarm">闹钟</string>
+
+
+    <!-- settings for Notifications -->
+    <string name="pref_header_notifications">通知</string>
+
+
+</resources>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.forritzstar.freeringtones">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Umeng -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:name=".manager.MyApp"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo">
+        <activity
+            android:name="com.forritzstar.freeringtones.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.forritzstar.freeringtones.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.AddActivity"
+            android:label="@string/title_activity_add"
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.forritzstar.freeringtones.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.forritzstar.freeringtones.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.HelpActivity"
+            android:label="@string/title_activity_help"
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.forritzstar.freeringtones.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.FAQActivity"
+            android:label="@string/title_activity_faq"
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.forritzstar.freeringtones.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.HelpXiaomiActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar"></activity>
+
+        <service android:name="com.forritzstar.freeringtones.manager.NotificationService"></service>
+        <service android:name="com.forritzstar.freeringtones.manager.AlarmService"></service>
+
+        <receiver android:name="com.forritzstar.freeringtones.manager.AlarmReceiver" />
+        <receiver android:name="com.forritzstar.freeringtones.manager.BootCompletedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.forritzstar.freeringtones.manager.RingtoneReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- umeng -->
+        <activity
+            android:name="com.umeng.fb.ConversationActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.umeng.fb.ContactActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5315cee256240b4c69066e1f"></meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="anzhi" />
+    </application>
+
+</manifest>

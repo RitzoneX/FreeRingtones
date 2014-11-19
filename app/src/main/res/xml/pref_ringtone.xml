@@ -1,0 +1,11 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="@string/default_value_ring_mode"
+        android:entries="@array/entries_ring_mode"
+        android:entryValues="@array/entry_values_ring_mode"
+        android:key="pref_key_ringtone_mode"
+        android:title="@string/pref_title_ring_mode" />
+
+
+</PreferenceScreen>
