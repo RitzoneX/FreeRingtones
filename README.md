@@ -19,4 +19,10 @@ App store
 ---------
 - 小米：http://app.mi.com/detail/56912
 - 安智：http://www.anzhi.com/soft_1769159.html
-- 安卓市场：http://apk.hiapk.com/appinfo/com.forritzstar.freeringtones
+
+Screenshots
+-----------
+<img src="screenshots/Screenshot_2014-11-18-14-15-57.png" alt="main" title="screenshot" width="360" height="640" />
+<img src="screenshots/Screenshot_2014-11-18-14-16-15.png" alt="main" title="screenshot" width="360" height="640" />
+<img src="screenshots/Screenshot_2014-11-18-14-16-49.png" alt="main" title="screenshot" width="360" height="640" />
+<img src="screenshots/Screenshot_2014-11-18-14-17-15.png" alt="main" title="screenshot" width="360" height="640" />
