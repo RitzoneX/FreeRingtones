@@ -14,7 +14,7 @@ Features
 - 添加设置默认铃声
 - 优化帮助说明
 
-App store
+App Store
 ---------
 - 小米：http://app.mi.com/detail/56912
 - 安智：http://www.anzhi.com/soft_1769159.html
