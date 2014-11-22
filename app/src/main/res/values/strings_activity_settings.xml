@@ -1,5 +1,6 @@
 <resources>
     <string name="title_activity_settings">设置</string>
+    <string name="pref_title_ring_interval">切换间隔</string>
 
     <!-- Strings related to Settings -->
     <string-array name="entries_ring_mode">
@@ -13,19 +14,80 @@
         <item>2</item>
     </string-array>
 
+
     <string name="default_value_ring_mode">0</string>
     <string name="pref_title_ring_mode">铃声模式</string>
 
     <!-- Ringtone settings -->
     <string name="pref_header_ringtone">来电</string>
 
-
-    <!-- settings for Alarm -->
-    <string name="pref_header_alarm">闹钟</string>
+    <string-array name="entries_ringtone_interval">
+        <item>每次</item>
+        <item>每15分钟</item>
+        <item>每半小时</item>
+        <item>每小时</item>
+        <item>每半天</item>
+        <item>每天</item>
+        <item>每周</item>
+        <item>每月</item>
+    </string-array>
+    <string-array name="entry_values_ringtone_interval">
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string name="default_value_ringtone_interval">-1</string>
 
 
     <!-- settings for Notifications -->
     <string name="pref_header_notifications">通知</string>
+    <string-array name="entries_notification_interval">
+        <item>每次</item>
+        <item>每15分钟</item>
+        <item>每半小时</item>
+        <item>每小时</item>
+        <item>每半天</item>
+        <item>每天</item>
+        <item>每周</item>
+        <item>每月</item>
+    </string-array>
+    <string-array name="entry_values_notification_interval">
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string name="default_value_notification_interval">-1</string>
 
 
+    <!-- settings for Alarm -->
+    <string name="pref_header_alarm">闹钟</string>
+    <string-array name="entries_alarm_interval">
+        <item>每15分钟</item>
+        <item>每半小时</item>
+        <item>每小时</item>
+        <item>每半天</item>
+        <item>每天</item>
+        <item>每周</item>
+        <item>每月</item>
+    </string-array>
+    <string-array name="entry_values_alarm_interval">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string name="default_value_alarm_interval">4</string>
 </resources>

@@ -51,7 +51,7 @@ public class Ring {
 
 	private int getPosition() {
 		String mode = preferences.getString(getKey(), "");
-		if (mode.equals(Share.MODE_RANDOM))
+		if (mode.equals(Mode.MODE_RANDOM))
 			return random();
 		else
 			return loop();

@@ -6,5 +6,11 @@
         android:entryValues="@array/entry_values_ring_mode"
         android:key="pref_key_notification_mode"
         android:title="@string/pref_title_ring_mode" />
+    <ListPreference
+        android:defaultValue="@string/default_value_notification_interval"
+        android:entries="@array/entries_notification_interval"
+        android:entryValues="@array/entry_values_notification_interval"
+        android:key="pref_key_notification_interval"
+        android:title="@string/pref_title_ring_interval" />
 
 </PreferenceScreen>

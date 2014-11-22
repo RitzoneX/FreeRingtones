@@ -5,5 +5,10 @@
         android:entryValues="@array/entry_values_ring_mode"
         android:key="pref_key_alarm_mode"
         android:title="@string/pref_title_ring_mode" />
-
+    <ListPreference
+        android:defaultValue="@string/default_value_alarm_interval"
+        android:entries="@array/entries_alarm_interval"
+        android:entryValues="@array/entry_values_alarm_interval"
+        android:key="pref_key_alarm_interval"
+        android:title="@string/pref_title_ring_interval" />
 </PreferenceScreen>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.forritzstar.freeringtones">
+    package="com.forritzstar.freeringtones" >
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -13,14 +13,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
-        android:name=".manager.MyApp"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo">
+        android:theme="@android:style/Theme.Holo" >
         <activity
             android:name="com.forritzstar.freeringtones.MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,62 +28,66 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name="com.forritzstar.freeringtones.ui.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.forritzstar.freeringtones.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.AddActivity"
+            android:name="com.forritzstar.freeringtones.ui.AddActivity"
             android:label="@string/title_activity_add"
-            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.forritzstar.freeringtones.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.AboutActivity"
+            android:name="com.forritzstar.freeringtones.ui.AboutActivity"
             android:label="@string/title_activity_about"
-            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.forritzstar.freeringtones.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.HelpActivity"
+            android:name="com.forritzstar.freeringtones.ui.HelpActivity"
             android:label="@string/title_activity_help"
-            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.forritzstar.freeringtones.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.FAQActivity"
+            android:name="com.forritzstar.freeringtones.ui.FAQActivity"
             android:label="@string/title_activity_faq"
-            android:parentActivityName="com.forritzstar.freeringtones.MainActivity">
+            android:parentActivityName="com.forritzstar.freeringtones.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.forritzstar.freeringtones.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.HelpXiaomiActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar"></activity>
+            android:name="com.forritzstar.freeringtones.ui.HelpXiaomiActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar" />
 
-        <service android:name="com.forritzstar.freeringtones.manager.NotificationService"></service>
-        <service android:name="com.forritzstar.freeringtones.manager.AlarmService"></service>
+        <service android:name="com.forritzstar.freeringtones.manager.NotificationService" />
 
         <receiver android:name="com.forritzstar.freeringtones.manager.AlarmReceiver" />
-        <receiver android:name="com.forritzstar.freeringtones.manager.BootCompletedReceiver">
+        <receiver android:name="com.forritzstar.freeringtones.manager.BootCompletedReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.forritzstar.freeringtones.manager.RingtoneReceiver">
+        <receiver android:name="com.forritzstar.freeringtones.manager.RingtoneReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.forritzstar.freeringtones.manager.NotificationReceiver"
+            android:enabled="true"
+            android:exported="true" >
         </receiver>
 
         <!-- umeng -->
@@ -96,10 +100,11 @@
 
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5315cee256240b4c69066e1f"></meta-data>
+            android:value="5315cee256240b4c69066e1f" />
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="anzhi" />
+
     </application>
 
 </manifest>

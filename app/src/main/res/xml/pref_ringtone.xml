@@ -6,6 +6,12 @@
         android:entryValues="@array/entry_values_ring_mode"
         android:key="pref_key_ringtone_mode"
         android:title="@string/pref_title_ring_mode" />
+    <ListPreference
+        android:defaultValue="@string/default_value_ringtone_interval"
+        android:entries="@array/entries_ringtone_interval"
+        android:entryValues="@array/entry_values_ringtone_interval"
+        android:key="pref_key_ringtone_interval"
+        android:title="@string/pref_title_ring_interval" />
 
 
 </PreferenceScreen>

@@ -7,7 +7,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -15,8 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ShareActionProvider;
 
-import com.forritzstar.freeringtones.manager.ServiceManager;
-import com.forritzstar.freeringtones.ui.AboutActivity;
+import com.forritzstar.freeringtones.manager.MyManager;
 import com.forritzstar.freeringtones.ui.AddActivity;
 import com.forritzstar.freeringtones.ui.HelpActivity;
 import com.forritzstar.freeringtones.ui.RingFragment;
@@ -90,7 +88,7 @@ public class MainActivity extends MyActivity implements ActionBar.TabListener, R
                             .setTabListener(this));
         }
 
-        ServiceManager.startServices(this);
+        MyManager.update();
     }
 
     private void umeng() {
@@ -149,22 +147,11 @@ public class MainActivity extends MyActivity implements ActionBar.TabListener, R
                 Intent intent = new Intent(this, AddActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.action_details:
-                intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri
-                        .parse("market://details?id=com.forritzstar.freeringtones"));
-                startActivity(intent);
-                return true;
             case R.id.action_help:
                 intent = new Intent(this, HelpActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.action_about:
-                intent = new Intent(this, AboutActivity.class);
-                startActivity(intent);
-                return true;
             case R.id.action_feedback:
-
                 agent.startFeedbackActivity();
                 return true;
         }

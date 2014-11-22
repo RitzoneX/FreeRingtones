@@ -15,6 +15,7 @@
         android:src="@drawable/ic_launcher" />
 
     <TextView
+        android:id="@+id/tv_about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="50dp"
@@ -35,6 +36,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/qq" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome" />
 
     <TextView
         android:layout_width="match_parent"

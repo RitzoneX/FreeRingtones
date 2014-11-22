@@ -2,7 +2,6 @@ package com.forritzstar.freeringtones.ui;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,10 +15,7 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 import com.forritzstar.freeringtones.R;
-import com.forritzstar.freeringtones.manager.AlarmService;
-import com.forritzstar.freeringtones.manager.MyApp;
-import com.forritzstar.freeringtones.manager.NotificationService;
-import com.forritzstar.freeringtones.manager.Share;
+import com.forritzstar.freeringtones.manager.MyManager;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
@@ -39,6 +35,9 @@ public class SettingsActivity extends PreferenceActivity {
     public static final String PREF_KEY_RINGTONE_MODE = "pref_key_ringtone_mode";
     public static final String PREF_KEY_NOTIFICATION_MODE = "pref_key_notification_mode";
     public static final String PREF_KEY_ALARM_MODE = "pref_key_alarm_mode";
+    public static final String PREF_KEY_RINGTONE_INTERVAL = "pref_key_ringtone_interval";
+    public static final String PREF_KEY_NOTIFICATION_INTERVAL = "pref_key_notification_interval";
+    public static final String PREF_KEY_ALARM_INTERVAL = "pref_key_alarm_interval";
 
     /**
      * Determines whether to always show the simplified settings UI, where
@@ -52,6 +51,12 @@ public class SettingsActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupActionBar();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        MyManager.update();
     }
 
     /**
@@ -140,6 +145,10 @@ public class SettingsActivity extends PreferenceActivity {
         bindPreferenceSummaryToValue(findPreference(PREF_KEY_RINGTONE_MODE));
         bindPreferenceSummaryToValue(findPreference(PREF_KEY_NOTIFICATION_MODE));
         bindPreferenceSummaryToValue(findPreference(PREF_KEY_ALARM_MODE));
+        bindPreferenceSummaryToValue(findPreference(PREF_KEY_RINGTONE_INTERVAL));
+        bindPreferenceSummaryToValue(findPreference(PREF_KEY_NOTIFICATION_INTERVAL));
+        bindPreferenceSummaryToValue(findPreference(PREF_KEY_ALARM_INTERVAL));
+
     }
 
     /**
@@ -188,8 +197,14 @@ public class SettingsActivity extends PreferenceActivity {
      * to reflect its new value.
      */
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
+        private String key;
+        private Object value;
+
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
+            this.key = preference.getKey();
+            this.value = value;
+
             String stringValue = value.toString();
 
             if (preference instanceof ListPreference) {
@@ -204,17 +219,6 @@ public class SettingsActivity extends PreferenceActivity {
                                 ? listPreference.getEntries()[index]
                                 : null);
 
-                // start service
-                Class<?> c = getService(preference.getKey());
-                if (c != null) {
-                    Intent service = new Intent(MyApp.app, c);
-                    if (value.equals(Share.MODE_DEFAULT)) {
-                        MyApp.app.stopService(service);
-                    } else {
-                        MyApp.app.startService(service);
-                    }
-                }
-
             } else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
@@ -223,12 +227,8 @@ public class SettingsActivity extends PreferenceActivity {
             return true;
         }
 
-        private Class<?> getService(String key) {
-            if (key.equals(PREF_KEY_NOTIFICATION_MODE))
-                return NotificationService.class;
-            if (key.equals(PREF_KEY_ALARM_MODE))
-                return AlarmService.class;
-            return null;
+        private void setAlarm(String key) {
+
         }
 
     };
@@ -245,6 +245,7 @@ public class SettingsActivity extends PreferenceActivity {
     private static void bindPreferenceSummaryToValue(Preference preference) {
         // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
+
 
         // Trigger the listener immediately with the preference's
         // current value.

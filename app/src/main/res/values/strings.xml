@@ -28,4 +28,10 @@
     <string name="faq">FAQ</string>
     <string name="title_activity_faq">FAQ</string>
     <string name="action_feedback">反馈</string>
+    <string name="dialog_message_details">如果觉得App不错，请到市场上给个好评~</string>
+    <string name="dialog_title_details">评价</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="welcome">如果你喜欢这个App，欢迎来学习和完善它^^</string>
+    <string name="version_unknown">未知版本</string>
 </resources>

@@ -2,7 +2,6 @@ package com.forritzstar.freeringtones.util;
 
 import android.content.Context;
 import android.media.RingtoneManager;
-import android.widget.Toast;
 
 import com.forritzstar.freeringtones.dao.DBHelper;
 import com.forritzstar.freeringtones.dao.Ringtone;
@@ -43,6 +42,7 @@ public class Setting {
 			String fileName) {
 		Ringtone ringtone = new Ring(context, tableName).next();
 		if (ringtone != null) {
+//            Toast.makeText(context, ringtone.getTitle(), Toast.LENGTH_SHORT).show();
 			RingtoneManager.setActualDefaultRingtoneUri(context, type,
 					ringtone.getUri());
 

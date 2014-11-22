@@ -7,18 +7,18 @@ import android.content.Intent;
 import com.forritzstar.freeringtones.ui.SettingsActivity;
 import com.forritzstar.freeringtones.util.Setting;
 
+public class NotificationReceiver extends BroadcastReceiver {
+    public NotificationReceiver() {
+    }
 
-//首先创建Receiver
-public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Setting.changeAlarm(context);
+        Setting.changeNotification(context);
         updateSharedPreferences();
     }
 
     private void updateSharedPreferences() {
-        MyPreference.putLong(MyPreference.PREF_ALARM_TRIGGER,
-                System.currentTimeMillis() + MyPreference.getInterval(SettingsActivity.PREF_KEY_ALARM_INTERVAL));
+        MyPreference.putLong(MyPreference.PREF_NOTIFICATION_TRIGGER, System.currentTimeMillis() +
+                MyPreference.getInterval(SettingsActivity.PREF_KEY_NOTIFICATION_INTERVAL));
     }
-
 }

@@ -8,8 +8,8 @@ android {
         applicationId "com.forritzstar.freeringtones"
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode 20
-        versionName "v3.0"
+        versionCode 21
+        versionName "v3.1"
     }
     buildTypes {
         release {
