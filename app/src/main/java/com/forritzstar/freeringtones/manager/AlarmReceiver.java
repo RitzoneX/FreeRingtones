@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.forritzstar.freeringtones.ui.SettingsActivity;
 import com.forritzstar.freeringtones.util.Setting;
 
 
@@ -18,7 +17,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private void updateSharedPreferences() {
         MyPreference.putLong(MyPreference.PREF_ALARM_TRIGGER,
-                System.currentTimeMillis() + MyPreference.getInterval(SettingsActivity.PREF_KEY_ALARM_INTERVAL));
+                System.currentTimeMillis() + MyPreference.getAlarmInterval());
     }
 
 }

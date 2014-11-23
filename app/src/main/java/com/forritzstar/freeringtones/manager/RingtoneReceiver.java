@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
 
-import com.forritzstar.freeringtones.ui.SettingsActivity;
 import com.forritzstar.freeringtones.util.Setting;
 
 
@@ -24,7 +23,7 @@ public class RingtoneReceiver extends BroadcastReceiver {
 
     private void updateSharedPreferences() {
         MyPreference.putLong(MyPreference.PREF_RINGTONE_TRIGGER, System.currentTimeMillis() +
-                MyPreference.getInterval(SettingsActivity.PREF_KEY_RINGTONE_INTERVAL));
+                MyPreference.getRingtoneInterval());
     }
 
     private void changeRingtone(Context context) {

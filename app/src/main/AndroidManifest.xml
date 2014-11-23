@@ -103,7 +103,7 @@
             android:value="5315cee256240b4c69066e1f" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="anzhi" />
+            android:value="xiaomi" />
 
     </application>
 

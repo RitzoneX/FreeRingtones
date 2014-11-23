@@ -23,14 +23,18 @@ public class MyPreference {
         return MyApp.preferences.getLong(key, 0);
     }
 
-    static String getString(String key) {
-        return MyApp.preferences.getString(key, "");
+//    static String getString(String key) {
+//        return getString(key, "");
+//    }
+
+    static String getString(String key, String defValue) {
+        return MyApp.preferences.getString(key, defValue);
     }
 
-    static long getInterval(String prefKey) {
-        int i = Integer.parseInt(getString(prefKey));
-        return i != -1 ? intervals[i] : 0;
-    }
+//    static long getInterval(String prefKey) {
+//        int i = Integer.parseInt(getString(prefKey, ""));
+//        return i != -1 ? intervals[i] : 0;
+//    }
 
     static void putLong(String key, long value) {
         MyApp.preferences.edit().putLong(key, value).commit();
@@ -38,13 +42,13 @@ public class MyPreference {
 
     // 查看是否开启模式
     private static boolean isModeOn(String key) {
-        String pref = getString(key);
+        String pref = getString(key, Mode.MODE_RANDOM);
         return pref.equals(Mode.MODE_RANDOM) || pref.equals(Mode.MODE_LOOP);
     }
 
     // 切换模式是否每一次
     private static boolean isEach(String key) {
-        return getString(key).equals("-1");
+        return getString(key, "-1").equals("-1");
     }
 
 //    /**
@@ -80,5 +84,20 @@ public class MyPreference {
     // 是否开启模式
     static boolean alarmModeOn() {
         return isModeOn(SettingsActivity.PREF_KEY_ALARM_MODE);
+    }
+
+    static long getRingtoneInterval() {
+        int i = Integer.parseInt(getString(SettingsActivity.PREF_KEY_RINGTONE_INTERVAL, "-1"));
+        return i != -1 ? intervals[i] : 0;
+    }
+
+    static long getNotificationInterval() {
+        int i = Integer.parseInt(getString(SettingsActivity.PREF_KEY_NOTIFICATION_INTERVAL, "-1"));
+        return i != -1 ? intervals[i] : 0;
+    }
+
+    static long getAlarmInterval() {
+        int i = Integer.parseInt(getString(SettingsActivity.PREF_KEY_ALARM_INTERVAL, "4"));
+        return intervals[i];
     }
 }

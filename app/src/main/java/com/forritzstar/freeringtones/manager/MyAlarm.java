@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.forritzstar.freeringtones.MyApp;
-import com.forritzstar.freeringtones.ui.SettingsActivity;
 
 /**
  * Created by zzz on 14-11-20.
@@ -15,19 +14,21 @@ public class MyAlarm {
     private static long interval;
 
     public static void setAlarm() {
-        set(AlarmReceiver.class, SettingsActivity.PREF_KEY_ALARM_INTERVAL, MyPreference.PREF_ALARM_TRIGGER);
+        interval = MyPreference.getAlarmInterval();
+        set(AlarmReceiver.class, MyPreference.PREF_ALARM_TRIGGER);
     }
 
     public static void setRingtone() {
-        set(RingtoneReceiver.class, SettingsActivity.PREF_KEY_RINGTONE_INTERVAL, MyPreference.PREF_RINGTONE_TRIGGER);
+        interval = MyPreference.getRingtoneInterval();
+        set(RingtoneReceiver.class, MyPreference.PREF_RINGTONE_TRIGGER);
     }
 
     public static void setNotification() {
-        set(NotificationReceiver.class, SettingsActivity.PREF_KEY_NOTIFICATION_INTERVAL, MyPreference.PREF_NOTIFICATION_TRIGGER);
+        interval = MyPreference.getNotificationInterval();
+        set(NotificationReceiver.class, MyPreference.PREF_NOTIFICATION_TRIGGER);
     }
 
-    private static void set(Class<?> cls, String intervalKey, String triggerKey) {
-        interval = MyPreference.getInterval(intervalKey);
+    private static void set(Class<?> cls, String triggerKey) {
         AlarmManager alarmMgr = (AlarmManager) MyApp.app.getSystemService(Context.ALARM_SERVICE);
         alarmMgr.setInexactRepeating(AlarmManager.RTC, getTriggerAtMillis(triggerKey),
                 interval, getPendIntent(cls));
